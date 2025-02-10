@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: PortierDigital
+  devtools:
+    add-properties: true
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+      additional-exclude: application.yml
+      poll-interval: 100ms
+      quiet-period: 200ms
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: password
+    url: jdbc:postgresql://localhost:5432/portier_digital
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: POSTGRESQL
+    show-sql: true
+  data:
+    jdbc:
+      dialect:
