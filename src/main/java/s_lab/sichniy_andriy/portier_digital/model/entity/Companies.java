@@ -9,20 +9,21 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.util.Objects;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.type.SqlTypes;
 
-@Getter @Setter @ToString @NoArgsConstructor
-@Entity @Table(name = "skills")
-public class Skill {
+
+@Getter @Setter @ToString @RequiredArgsConstructor
+@Entity @Table(name = "companies")
+public class Companies {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "skills_gen")
-    @SequenceGenerator(name = "skills_gen", sequenceName = "skills_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "companies_gen")
+    @SequenceGenerator(name = "companies_gen", sequenceName = "companies_seq", allocationSize = 1)
     @Column(nullable = false)
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
@@ -30,8 +31,8 @@ public class Skill {
     @Column(name = "title", nullable = false, length = 50, unique = true, updatable = false, insertable = false)
     private String title;
 
-    @Column(name = "description", length = 2000)
-    private String description;
+    @Column(name = "position", length = 250)
+    private String position;
 
 
     @Override
@@ -49,8 +50,8 @@ public class Skill {
         if (thisEffectiveClass != oEffectiveClass) {
             return false;
         }
-        Skill skill = (Skill) o;
-        return getId() != null && Objects.equals(getId(), skill.getId());
+        Companies companies = (Companies) o;
+        return getId() != null && Objects.equals(getId(), companies.getId());
     }
 
     @Override
