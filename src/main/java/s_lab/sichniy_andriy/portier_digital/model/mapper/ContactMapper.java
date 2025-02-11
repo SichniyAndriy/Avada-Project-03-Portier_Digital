@@ -6,18 +6,18 @@ import org.mapstruct.MappingConstants.ComponentModel;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
-import s_lab.sichniy_andriy.portier_digital.model.Companies;
-import s_lab.sichniy_andriy.portier_digital.model.dto.CompaniesDto;
+import s_lab.sichniy_andriy.portier_digital.model.Contact;
+import s_lab.sichniy_andriy.portier_digital.model.dto.ContactDto;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE,
         componentModel = ComponentModel.SPRING)
-public interface CompaniesMapper {
+public interface ContactMapper {
 
-    Companies toEntity(CompaniesDto companiesDto);
+    Contact toEntity(ContactDto contactDto);
 
-    CompaniesDto toDto(Companies companies);
+    ContactDto toDto(Contact contacts);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Companies partialUpdate(CompaniesDto companiesDto, @MappingTarget Companies companies);
+    Contact partialUpdate(ContactDto contactDto, @MappingTarget Contact contact);
 
 }

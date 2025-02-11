@@ -18,7 +18,7 @@ import org.hibernate.type.SqlTypes;
 
 @Getter @Setter @ToString @RequiredArgsConstructor
 @Entity @Table(name = "contacts")
-public class Contacts {
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "contacts_gen")
@@ -27,7 +27,7 @@ public class Contacts {
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
-    @Column(name = "type", nullable = false, unique = true, length = 50, updatable = false, insertable = false)
+    @Column(name = "type", nullable = false, unique = true, length = 50, updatable = false)
     private String type;
 
     @Column(name = "address",length = 100)
@@ -47,8 +47,8 @@ public class Contacts {
         if (thisEffectiveClass != oEffectiveClass) {
             return false;
         }
-        Contacts contacts = (Contacts) o;
-        return getId() != null && Objects.equals(getId(), contacts.getId());
+        Contact contact = (Contact) o;
+        return getId() != null && Objects.equals(getId(), contact.getId());
     }
 
     @Override

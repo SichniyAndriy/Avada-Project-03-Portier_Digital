@@ -2,12 +2,12 @@ package s_lab.sichniy_andriy.portier_digital.repository;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import s_lab.sichniy_andriy.portier_digital.model.Contacts;
+import s_lab.sichniy_andriy.portier_digital.model.Contact;
 
 
-public interface ContactsRepository extends JpaRepository<Contacts, Long> {
+public interface ContactsRepository extends JpaRepository<Contact, Long> {
 
     @Override
-    List<Contacts> findAll();
+    List<Contact> findAll();
 
 }

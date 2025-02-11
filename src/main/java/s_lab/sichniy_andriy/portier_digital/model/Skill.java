@@ -27,7 +27,7 @@ public class Skill {
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
-    @Column(name = "title", nullable = false, length = 50, unique = true, updatable = false, insertable = false)
+    @Column(name = "title", nullable = false, length = 50, unique = true, updatable = false)
     private String title;
 
     @Column(name = "description", length = 2000)
