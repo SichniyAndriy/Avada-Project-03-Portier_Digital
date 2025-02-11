@@ -1,6 +1,8 @@
 package s_lab.sichniy_andriy.portier_digital.model.mapper;
 
+import java.util.List;
 import org.mapstruct.BeanMapping;
+import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants.ComponentModel;
 import org.mapstruct.MappingTarget;
@@ -19,5 +21,8 @@ public interface CompanyMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Company partialUpdate(CompanyDto companiesDto, @MappingTarget Company companies);
+
+    @IterableMapping(elementTargetType = CompanyDto.class)
+    List<CompanyDto> toDto(List<Company> companies);
 
 }

@@ -37,9 +37,9 @@ public class InitUtils implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         final int n = 5;
-        initCompanies(faker.number().numberBetween(8, 12));
+        initCompanies(faker.number().numberBetween(5, 10));
         initContacts();
-        initSkills(faker.number().numberBetween(5, 10));
+        initSkills(faker.number().numberBetween(9, 12));
     }
 
     private void initCompanies(int n) {
@@ -47,7 +47,7 @@ public class InitUtils implements CommandLineRunner {
         for (int i = 0; i < n; ++i) {
             Company company = new Company();
             company.setTitle(faker.company().name());
-            company.setPosition(faker.company().profession());
+            company.setPosition(faker.hacker().adjective() + " " + faker.hacker().noun() + " " + faker.hacker().verb());
             companies.add(company);
         }
         companiesRepository.saveAllAndFlush(companies);
@@ -61,15 +61,15 @@ public class InitUtils implements CommandLineRunner {
         contacts.add(contact1);
         Contact contact2 = new Contact();
         contact2.setType("Email");
-        contact2.setAddress(faker.internet().domainName());
+        contact2.setAddress(faker.internet().emailAddress());
         contacts.add(contact2);
         Contact contact3 = new Contact();
         contact3.setType("Twitter");
-        contact3.setAddress(faker.internet().domainName());
+        contact3.setAddress(faker.twitter().userName());
         contacts.add(contact3);
         Contact contact4 = new Contact();
         contact4.setType("Facebook");
-        contact4.setAddress(faker.internet().domainName());
+        contact4.setAddress(faker.twitter().userName());
         contacts.add(contact4);
         contactsRepository.saveAllAndFlush(contacts);
     }
@@ -86,7 +86,7 @@ public class InitUtils implements CommandLineRunner {
                 flag = skills.stream().anyMatch(item -> item.getTitle().equals(finalTmpTitle));
             } while (flag);
             skill.setTitle(tmpTitle);
-            skill.setDescription(faker.job().field());
+            skill.setDescription(faker.yoda().quote());
             skills.add(skill);
         }
         skillsRepository.saveAllAndFlush(skills);
