@@ -8,18 +8,24 @@ spring:
     restart:
       enabled: true
       additional-exclude: application.yml
-      poll-interval: 100ms
-      quiet-period: 200ms
+      poll-interval: 50ms
+      quiet-period: 50ms
   datasource:
-    driver-class-name: org.postgresql.Driver
     username: postgres
     password: password
-    url: jdbc:postgresql://localhost:5432/portier_digital
+    url: jdbc:postgresql://host.docker.internal:5432/portier_digital
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 100
+      data-source-properties:
+        useServerPrepStmts: true
+        cachePrepStmts: true
+        metadataCacheLimit: 1
+        transaction-isolation: TRANSACTION_READ_COMMITTED
+      leak-detection-threshold: 5000
   jpa:
     hibernate:
       ddl-auto: create
-    database: POSTGRESQL
     show-sql: true
-  data:
-    jdbc:
-      dialect:
+    open-in-view: false
