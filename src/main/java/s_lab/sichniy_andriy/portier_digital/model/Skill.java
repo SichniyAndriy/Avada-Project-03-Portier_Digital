@@ -1,4 +1,4 @@
-package s_lab.sichniy_andriy.portier_digital.model.entity;
+package s_lab.sichniy_andriy.portier_digital.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
