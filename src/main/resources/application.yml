@@ -11,10 +11,11 @@ spring:
       poll-interval: 50ms
       quiet-period: 50ms
   datasource:
-    username: postgres
-    password: password
-    url: jdbc:postgresql://host.docker.internal:5432/portier_digital
-    driver-class-name: org.postgresql.Driver
+    username: slj_kinocms
+    password: 4h8bLzSDig
+    url: jdbc:mysql://localhost:3306/slj_kinocms2
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
     hikari:
       minimum-idle: 10
       maximum-pool-size: 100
@@ -29,3 +30,4 @@ spring:
       ddl-auto: create
     show-sql: true
     open-in-view: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect
