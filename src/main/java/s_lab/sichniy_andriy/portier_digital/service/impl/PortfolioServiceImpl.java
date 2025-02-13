@@ -1,6 +1,7 @@
 package s_lab.sichniy_andriy.portier_digital.service.impl;
 
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import s_lab.sichniy_andriy.portier_digital.model.Project;
 import s_lab.sichniy_andriy.portier_digital.model.dto.ProjectDto;
@@ -12,8 +13,16 @@ import s_lab.sichniy_andriy.portier_digital.service.PortfolioService;
 @Service
 public class PortfolioServiceImpl implements PortfolioService {
 
-    private ProjectRepository projectRepository;
-    private ProjectMapper projectMapper;
+    private final ProjectRepository projectRepository;
+    private final ProjectMapper projectMapper;
+
+    public PortfolioServiceImpl(
+            @Autowired ProjectRepository projectRepository,
+            @Autowired ProjectMapper projectMapper
+    ) {
+        this.projectRepository = projectRepository;
+        this.projectMapper = projectMapper;
+    }
 
 
     @Override

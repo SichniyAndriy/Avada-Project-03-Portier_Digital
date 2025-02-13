@@ -9,4 +9,5 @@ public record ContactDto(
         Long id,
         String type,
         String address
-) implements Serializable {}
+) implements Serializable {
+}

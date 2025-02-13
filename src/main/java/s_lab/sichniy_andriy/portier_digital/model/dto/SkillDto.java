@@ -9,4 +9,5 @@ public record SkillDto(
         Long id,
         String title,
         String description
-) implements Serializable {}
+) implements Serializable {
+}

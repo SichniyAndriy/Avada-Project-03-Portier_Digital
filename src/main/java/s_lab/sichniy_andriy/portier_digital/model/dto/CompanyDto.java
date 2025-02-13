@@ -9,4 +9,5 @@ public record CompanyDto(
         Long id,
         String title,
         String position
-) implements Serializable {}
+) implements Serializable {
+}
