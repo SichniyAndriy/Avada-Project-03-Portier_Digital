@@ -23,6 +23,7 @@ public class AboutController {
         this.aboutService = aboutService;
     }
 
+
     @GetMapping( { "", "/" } )
     public String about(Model model) {
         List<CompanyDto> companyDtoList = aboutService.getAllCompanies();

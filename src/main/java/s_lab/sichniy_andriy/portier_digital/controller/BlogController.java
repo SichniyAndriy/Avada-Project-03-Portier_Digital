@@ -21,6 +21,7 @@ public class BlogController {
         this.blogService = blogService;
     }
 
+
     @GetMapping( { "", "/" } )
     public ModelAndView blog(ModelAndView modelAndView) {
         modelAndView.setViewName("blog");
