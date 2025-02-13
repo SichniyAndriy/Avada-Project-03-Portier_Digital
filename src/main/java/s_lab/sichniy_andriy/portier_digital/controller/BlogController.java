@@ -18,7 +18,6 @@ public class BlogController {
     public BlogController(
             @Autowired BlogService blogService
     ) {
-
         this.blogService = blogService;
     }
 

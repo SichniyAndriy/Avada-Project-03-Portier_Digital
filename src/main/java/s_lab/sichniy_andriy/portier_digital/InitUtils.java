@@ -7,9 +7,11 @@ import net.datafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import s_lab.sichniy_andriy.portier_digital.model.Article;
 import s_lab.sichniy_andriy.portier_digital.model.Company;
 import s_lab.sichniy_andriy.portier_digital.model.Contact;
 import s_lab.sichniy_andriy.portier_digital.model.Skill;
+import s_lab.sichniy_andriy.portier_digital.repository.ArticlesRepository;
 import s_lab.sichniy_andriy.portier_digital.repository.CompaniesRepository;
 import s_lab.sichniy_andriy.portier_digital.repository.ContactsRepository;
 import s_lab.sichniy_andriy.portier_digital.repository.SkillsRepository;
@@ -20,26 +22,41 @@ public class InitUtils implements CommandLineRunner {
     private final ContactsRepository contactsRepository;
     private final SkillsRepository skillsRepository;
     private final CompaniesRepository companiesRepository;
+    private final ArticlesRepository articlesRepository;
+
     private final Faker faker;
 
     public InitUtils(
             @Autowired ContactsRepository contactsRepository,
             @Autowired SkillsRepository skillsRepository,
-            @Autowired CompaniesRepository companiesRepository
+            @Autowired CompaniesRepository companiesRepository,
+            @Autowired ArticlesRepository articlesRepository
     ) {
+        this.faker = new Faker();
         this.contactsRepository = contactsRepository;
         this.skillsRepository = skillsRepository;
         this.companiesRepository = companiesRepository;
-        this.faker = new Faker();
+        this.articlesRepository = articlesRepository;
     }
 
 
     @Override
-    public void run(String... args) throws Exception {
-        final int n = 5;
+    public void run(String... args) {
+        initArticles(faker.number().numberBetween(15, 25));
         initCompanies(faker.number().numberBetween(5, 10));
         initContacts();
         initSkills(faker.number().numberBetween(9, 12));
+    }
+
+    private void initArticles(int n) {
+        List<Article> articles = new ArrayList<>();
+        for (int i = 0; i < n; ++i) {
+            Article article = new Article();
+            article.setTitle(faker.book().title());
+            article.setContent(faker.text().text(500, 2000));
+            articles.add(article);
+        }
+        articlesRepository.saveAllAndFlush(articles);
     }
 
     private void initCompanies(int n) {
