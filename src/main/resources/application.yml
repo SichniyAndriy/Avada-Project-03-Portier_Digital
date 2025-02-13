@@ -7,15 +7,14 @@ spring:
       enabled: true
     restart:
       enabled: true
-      additional-exclude: application.yml
-      poll-interval: 50ms
+      additional-exclude: static/images
+      poll-interval: 100ms
       quiet-period: 50ms
   datasource:
     username: slj_kinocms
     password: 4h8bLzSDig
     url: jdbc:mysql://localhost:3306/slj_kinocms2
     driver-class-name: com.mysql.cj.jdbc.Driver
-
     hikari:
       minimum-idle: 10
       maximum-pool-size: 100
