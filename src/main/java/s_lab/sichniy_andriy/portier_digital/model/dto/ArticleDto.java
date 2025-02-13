@@ -10,4 +10,5 @@ public record ArticleDto(
         String picturePath,
         String title,
         String content
-) implements Serializable {}
+) implements Serializable {
+}
