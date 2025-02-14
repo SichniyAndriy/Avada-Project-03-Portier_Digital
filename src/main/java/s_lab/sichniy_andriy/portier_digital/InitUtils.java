@@ -12,22 +12,24 @@ import s_lab.sichniy_andriy.portier_digital.model.Company;
 import s_lab.sichniy_andriy.portier_digital.model.Contact;
 import s_lab.sichniy_andriy.portier_digital.model.Project;
 import s_lab.sichniy_andriy.portier_digital.model.Skill;
+import s_lab.sichniy_andriy.portier_digital.model.Subscriber;
 import s_lab.sichniy_andriy.portier_digital.repository.ArticlesRepository;
 import s_lab.sichniy_andriy.portier_digital.repository.CompaniesRepository;
 import s_lab.sichniy_andriy.portier_digital.repository.ContactsRepository;
 import s_lab.sichniy_andriy.portier_digital.repository.ProjectRepository;
 import s_lab.sichniy_andriy.portier_digital.repository.SkillsRepository;
+import s_lab.sichniy_andriy.portier_digital.repository.SubscribersRepository;
 
 
 @Component
 public class InitUtils implements CommandLineRunner {
 
-    private final ContactsRepository contactsRepository;
-    private final SkillsRepository skillsRepository;
     private final CompaniesRepository companiesRepository;
-    private final ProjectRepository projectRepository;
+    private final ContactsRepository contactsRepository;
     private final ArticlesRepository articlesRepository;
-
+    private final ProjectRepository projectRepository;
+    private final SkillsRepository skillsRepository;
+    private final SubscribersRepository subscribersRepository;
 
     private final Faker faker;
 
@@ -36,7 +38,8 @@ public class InitUtils implements CommandLineRunner {
             @Autowired CompaniesRepository companiesRepository,
             @Autowired ContactsRepository contactsRepository,
             @Autowired ProjectRepository projectRepository,
-            @Autowired SkillsRepository skillsRepository
+            @Autowired SkillsRepository skillsRepository,
+            @Autowired SubscribersRepository subscribersRepository
     ) {
         this.faker = new Faker();
         this.articlesRepository = articlesRepository;
@@ -44,6 +47,7 @@ public class InitUtils implements CommandLineRunner {
         this.contactsRepository = contactsRepository;
         this.projectRepository = projectRepository;
         this.skillsRepository = skillsRepository;
+        this.subscribersRepository = subscribersRepository;
     }
 
 
@@ -54,6 +58,7 @@ public class InitUtils implements CommandLineRunner {
         initContacts();
         initProjects(faker.number().numberBetween(5, 10));
         initSkills(faker.number().numberBetween(9, 12));
+        initSubscribers(faker.number().numberBetween(20, 30));
     }
 
     private void initArticles(int n) {
@@ -126,6 +131,16 @@ public class InitUtils implements CommandLineRunner {
             skills.add(skill);
         }
         skillsRepository.saveAllAndFlush(skills);
+    }
+
+    private void initSubscribers(int n) {
+        List<Subscriber> subscribers = new ArrayList<>();
+        for (int j = 0; j < n; ++j) {
+            Subscriber subscriber = new Subscriber();
+            subscriber.setEmail(faker.internet().emailAddress());
+            subscribers.add(subscriber);
+        }
+        subscribersRepository.saveAllAndFlush(subscribers);
     }
 
 }
