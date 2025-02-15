@@ -40,8 +40,8 @@ Project-03-Portier Digital — це веб-додаток, який містит
 ## API-ендпоїнти (якщо є REST API)
 
 - `GET /articles` – отримати список статей
-- `GET /companies` – отримати список компаній
-- `POST /projects` – створити проєкт
+- `GET /companies` – список компаній, в яких прцював
+- `POST /projects` – список виконаних проектів
 
 ## Діаграми
 
