@@ -24,7 +24,7 @@ public class PortfolioController {
 
     @GetMapping( { "", "/" } )
     public ModelAndView portfolio(ModelAndView modelAndView) {
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("portfolio");
         List<ProjectDto> projectDtoList = portfolioService.getAllProjects();
         modelAndView.addObject("projects", projectDtoList);
         return modelAndView;
