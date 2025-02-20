@@ -66,7 +66,7 @@ public class InitUtils implements CommandLineRunner {
         for (int i = 0; i < n; ++i) {
             Article article = new Article();
             article.setTitle(faker.book().title());
-            article.setContent(faker.text().text(500, 2000));
+            article.setContent(faker.lorem().sentence(50, 50));
             articles.add(article);
         }
         articlesRepository.saveAllAndFlush(articles);
@@ -108,8 +108,8 @@ public class InitUtils implements CommandLineRunner {
         List<Project> projects = new ArrayList<>();
         for (int i = 0; i < n; ++i) {
             Project project = new Project();
-            project.setTitle(faker.commerce().brand());
-            project.setDescription(faker.text().text(100, 200));
+            project.setTitle(faker.commerce().productName());
+            project.setDescription(faker.lorem().sentence(50, 50));
             projects.add(project);
         }
         projectRepository.saveAllAndFlush(projects);
