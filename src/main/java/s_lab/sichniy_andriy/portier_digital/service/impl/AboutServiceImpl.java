@@ -2,6 +2,8 @@ package s_lab.sichniy_andriy.portier_digital.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import s_lab.sichniy_andriy.portier_digital.model.Company;
 import s_lab.sichniy_andriy.portier_digital.model.Contact;
@@ -48,19 +50,23 @@ public class AboutServiceImpl implements AboutService {
 
     @Override
     public List<CompanyDto> getAllCompanies() {
-        List<Company> companies = companiesRepository.findAll();
+        List<Company> companies =
+                companiesRepository.findAll(Sort.by(Direction.ASC, "id"));
         return companyMapper.toDto(companies);
     }
 
     @Override
     public List<ContactDto> getAllContacts() {
-        List<Contact> contacts = contactsRepository.findAll();
+        List<Contact> contacts =
+                contactsRepository.findAll(Sort.by(Direction.ASC, "id"));
         return contactMapper.toDto(contacts);
     }
 
     @Override
     public List<SkillDto> getAllSkills() {
-        List<Skill> skills = skillsRepository.findAll();
+        List<Skill> skills =
+                skillsRepository.findAll(Sort.by(Direction.ASC, "id"));
         return skillMapper.toDto(skills);
     }
+
 }

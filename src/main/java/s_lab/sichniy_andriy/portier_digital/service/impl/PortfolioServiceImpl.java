@@ -2,6 +2,8 @@ package s_lab.sichniy_andriy.portier_digital.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import s_lab.sichniy_andriy.portier_digital.model.Project;
 import s_lab.sichniy_andriy.portier_digital.model.dto.ProjectDto;
@@ -27,7 +29,8 @@ public class PortfolioServiceImpl implements PortfolioService {
 
     @Override
     public List<ProjectDto> getAllProjects() {
-        List<Project> projectList = projectRepository.findAll();
+        List<Project> projectList =
+                projectRepository.findAll(Sort.by(Direction.DESC, "id"));
         return projectMapper.toDto(projectList);
     }
 

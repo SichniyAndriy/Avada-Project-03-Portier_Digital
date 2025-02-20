@@ -1,4 +1,9 @@
 spring:
+  web:
+    resources:
+      static-locations: classpath:/static/, 
+        file:/apache-tomcat-10.1.34/webapps/, 
+        file:/home/slj/web/slj.demodev.cc/public_html/
   application:
     name: PortierDigital
   devtools:
@@ -8,8 +13,8 @@ spring:
     restart:
       enabled: true
       additional-exclude: static/images
-      poll-interval: 500ms
-      quiet-period: 250ms
+      poll-interval: 250ms
+      quiet-period: 100ms
   datasource:
     username: slj_kinocms
     password: 4h8bLzSDig
