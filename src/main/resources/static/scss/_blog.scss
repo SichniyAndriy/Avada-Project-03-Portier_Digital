@@ -3,14 +3,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     margin-top: 120px;
 
     .tips__inner--title {
         max-width: 830px;
         color: #FFF;
         text-align: center;
-
         /* Hero */
         font-family: Sora;
         font-size: 72px;
@@ -39,15 +37,12 @@
     .tips__inner--mail {
         margin-top: 48px;
 
-
         .email__holder {
             width: 567px;
             background: var(--vulcan, #12121C);
             height: 53px;
             border-radius: 8px;
             margin-left: -20px;
-
-
 
             &::placeholder {
                 color: #FFF;
@@ -60,7 +55,6 @@
                 line-height: 24px;
                 /* 171.429% */
             }
-
         }
 
         .subcribe {
@@ -80,6 +74,7 @@
         }
     }
 }
+
 
 .articles {
     margin-top: 240px;
@@ -120,11 +115,8 @@
             letter-spacing: -0.96px;
         }
 
-
-
         .articles__inner--subtitle {
             color: var(--aluminium, #88888D);
-
             /* Caption1 */
             font-family: Sora;
             font-size: 14px;
@@ -133,24 +125,21 @@
             line-height: 24px;
             /* 171.429% */
         }
-
-
     }
 
     .articles__info--title3 {
         display: none;
-
     }
 
     .articles__items {
-        margin-top: 47px;
+        margin-top: 48px;
         display: flex;
         flex-direction: column;
-        gap: 29px;
+        gap: 24px;
 
         .articles__items--box {
             display: flex;
-            gap: 40px;
+            gap: 24px;
 
             &:hover {
                 border-radius: 8px;
@@ -161,34 +150,34 @@
                 display: none;
             }
 
-
             .articles__box--info {
-                max-width: 590px;
                 margin-top: 40px;
 
                 .articles__info--title {
                     color: var(--white, #FFF);
-
                     /* Headline4 */
                     font-family: Sora;
                     font-size: 32px;
                     font-style: normal;
                     font-weight: 700;
-                    line-height: 40px;
+                    line-height: 64px;
                     /* 125% */
                     letter-spacing: -0.32px;
                 }
 
-
                 .articles__info--subtitle {
                     color: var(--aluminium, #88888D);
-                    margin-top: 15px;
+                    max-height: 132px;
+                    margin-top: 16px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     /* Caption1 */
                     font-family: Sora;
-                    font-size: 14px;
+                    font-size: 16px;
                     font-style: normal;
                     font-weight: 400;
-                    line-height: 24px;
+                    line-height: 32px;
+                    padding-right: 16px;
                     /* 171.429% */
                 }
             }
@@ -196,15 +185,13 @@
             .articles__info--link {
                 display: flex;
                 gap: 10px;
-                margin-top: 22px;
+                margin-top: 24px;
 
                 .articles__link--text {
-
                     color: var(--navy-blue, #006ADA);
-
                     /* Caption1Bold */
                     font-family: Sora;
-                    font-size: 14px;
+                    font-size: 16px;
                     font-style: normal;
                     font-weight: 600;
                     line-height: 24px;
@@ -219,6 +206,7 @@
 
     }
 }
+
 
 @media screen and (max-width: 1024px) {
     .tips__inner .tips__inner--title {
@@ -326,8 +314,6 @@
         margin-top: 90px;
     }
 
-
-
     .articles .articles__items .articles__items--box {
         flex-direction: column;
         gap: 13px;
@@ -417,6 +403,7 @@
     }
 }
 
+
 @media screen and (max-width: 415px) {
     .tips__inner .tips__inner--title {
         color: #FFF;
@@ -476,8 +463,6 @@
     .articles {
         margin-top: 90px;
     }
-
-
 
     .articles .articles__items .articles__items--box {
         flex-direction: column;
@@ -563,13 +548,12 @@
         display: none;
     }
 
-
-
     .articles .articles__items .articles__items--box .articles__box--img2 {
         display: block;
     }
 
 }
+
 
 @media screen and (max-width: 400px) {
     .articles .articles__items .articles__items--box .articles__box--img2 img {

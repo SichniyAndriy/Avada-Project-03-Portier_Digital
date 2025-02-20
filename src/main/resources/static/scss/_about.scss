@@ -84,6 +84,7 @@
     }
 }
 
+
 .values {
     margin-top: 240px;
 
@@ -92,18 +93,12 @@
     }
 
     .values__inner {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        margin-top: 40px;
         gap: 16px;
-
-
 
         .values__inner--title {
             color: var(--white, #FFF);
             text-align: center;
-
             /* Headline2 */
             font-family: Sora;
             font-size: 48px;
@@ -117,7 +112,6 @@
         .values__inner--subtitle {
             color: var(--aluminium, #88888D);
             text-align: center;
-            max-width: 550px;
             /* Caption1 */
             font-family: Sora;
             font-size: 14px;
@@ -131,7 +125,6 @@
             display: none;
             color: var(--aluminium, #88888D);
             text-align: center;
-            max-width: 550px;
             /* Caption1 */
             font-family: Sora;
             font-size: 14px;
@@ -143,22 +136,15 @@
     }
 
     .values__inner--items {
-        display: flex;
-        justify-content: space-between;
         margin-top: 47px;
-        flex-wrap: wrap;
     }
 
     .values__items {
-        display: flex;
-        flex-direction: column;
         gap: 32px;
-
 
         .values__item--box {
             display: flex;
             max-width: 399px;
-            height: 204px;
             padding: 20px;
             flex-direction: column;
             align-items: flex-start;
@@ -166,7 +152,6 @@
             border-radius: 8px;
 
             &:hover {
-
                 background: var(--steel-gray, #223);
             }
 
@@ -211,6 +196,7 @@
         }
     }
 }
+
 
 .numbers {
     margin-top: 240px;
@@ -264,19 +250,17 @@
         justify-content: space-between;
         margin-bottom: 240px;
 
-
         .companies__inner--info {
             max-width: 646px;
 
             .companies__info--title {
                 color: var(--white, #FFF);
-
                 /* Headline2 */
                 font-family: Sora;
                 font-size: 48px;
                 font-style: normal;
                 font-weight: 700;
-                line-height: 56px;
+                line-height: 96px;
                 /* 116.667% */
                 letter-spacing: -0.96px;
             }
@@ -286,22 +270,22 @@
                 margin-top: 18px;
                 /* Caption1 */
                 font-family: Sora;
-                font-size: 14px;
+                font-size: 24px;
                 font-style: normal;
                 font-weight: 400;
-                line-height: 24px;
+                line-height: 48px;
                 /* 171.429% */
             }
 
             .companies__info--footer {
                 color: var(--aluminium, #88888D);
-                margin-top: 382px;
+                margin-top: auto;
                 /* Caption1 */
                 font-family: Sora;
-                font-size: 14px;
+                font-size: 16px;
                 font-style: normal;
                 font-weight: 400;
-                line-height: 24px;
+                line-height: 32px;
                 /* 171.429% */
             }
         }
@@ -309,25 +293,19 @@
         .companies__inner--items {
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 24px;
 
             .companies__items--box {
-                width: 438px;
-                height: 96px;
-                display: inline-flex;
+                width: 480px;
+                // display: inline-flex;
                 padding: 20px;
                 align-items: flex-start;
-                gap: 24px;
-
-                &:hover {
-                    border-radius: 8px;
-                    background: var(--steel-gray, #223);
-                }
+                margin-top: 24px;
+                height: fit-content;
 
                 .companies__box--svg {
                     display: flex;
                     width: 44px;
-                    height: 44px;
                     padding: 14px 14px 15px 15px;
                     justify-content: center;
                     align-items: center;
@@ -337,13 +315,12 @@
 
                 .companies__box--name {
                     color: var(--white, #FFF);
-
                     /* Body1Bold */
                     font-family: Sora;
                     font-size: 24px;
                     font-style: normal;
                     font-weight: 600;
-                    line-height: 32px;
+                    line-height: 48px;
                     /* 133.333% */
                 }
 
@@ -355,13 +332,19 @@
                     font-size: 12px;
                     font-style: normal;
                     font-weight: 400;
-                    line-height: 20px;
+                    line-height: 24px;
                     /* 166.667% */
+                }
+
+                &:hover {
+                    border-radius: 8px;
+                    background: var(--steel-gray, #223);
                 }
             }
         }
     }
 }
+
 
 @media screen and (max-width: 1270px) {
     .numbers .numbers__inner .numbers__inner--items {
@@ -381,6 +364,7 @@
         letter-spacing: -0.96px;
     }
 }
+
 
 @media screen and (max-width: 1024px) {
     .companies2 .companies__inner2 {
@@ -417,37 +401,6 @@
 
     .designer .designer__inner .designer__inner--links {
         margin-top: 110px
-    }
-
-    .values {
-        margin-top: 200px;
-    }
-
-    .values .values__inner .values__inner--subtitle {
-        display: none;
-    }
-
-    .values .values__inner .values__inner--subtitle2 {
-        display: block;
-        max-width: 640px;
-    }
-
-    .values .values__inner--items {
-        display: none;
-    }
-
-    .values .values__inner--items2 {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 70px;
-        flex-wrap: wrap;
-
-    }
-
-    .values .values__items {
-        flex-direction: row;
-        gap: 38px;
-        margin-bottom: 30px;
     }
 
     .numbers {
@@ -497,11 +450,13 @@
 
 }
 
+
 @media screen and (max-width: 800px) {
     .designer .background__img {
         margin: 0;
     }
 }
+
 
 @media screen and (max-width: 680px) {
     .numbers .numbers__inner {
@@ -544,11 +499,9 @@
 
     .companies2 .companies__inner2 .companies__inner--items .companies__items--box {
         width: 100%;
-
     }
-
-
 }
+
 
 @media screen and (max-width: 500px) {
     .companies2 .companies__inner2 {
@@ -559,13 +512,11 @@
 
     .companies2 .companies__inner2 .companies__inner--info .companies__info--title {
         color: var(--white, #FFF);
-
         /* Headline4 */
         font-family: Sora;
         font-size: 32px;
         font-style: normal;
         font-weight: 700;
-        line-height: 40px;
         /* 125% */
         letter-spacing: -0.32px;
     }
@@ -582,6 +533,7 @@
         align-items: center;
     }
 }
+
 
 @media screen and (max-width: 431px) {
     .designer {
@@ -641,7 +593,6 @@
 
     .designer .designer__inner .designer__inner--links .designer__inner--menu .designer__menu--item {
         color: #FFF;
-
         /* Caption1 */
         font-family: Sora;
         font-size: 14px;
@@ -649,33 +600,6 @@
         font-weight: 400;
         line-height: 24px;
         /* 171.429% */
-    }
-
-    .values .values__inner .values__inner--title {
-        color: var(--white, #FFF);
-        text-align: center;
-
-        /* Headline4 */
-        font-family: Sora;
-        font-size: 32px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 40px;
-        /* 125% */
-        letter-spacing: -0.32px;
-    }
-
-    .values {
-        margin-top: 90px;
-    }
-
-    .values .values__items {
-        flex-direction: column;
-        gap: 33px;
-    }
-
-    .values .values__inner--items2 {
-        margin-top: 50px;
     }
 
     .numbers {
@@ -691,7 +615,6 @@
 
     .numbers .numbers__inner .numbers__inner--items .numbers__inner--title {
         color: #FFF;
-
         /* Headline3 */
         font-family: Sora;
         font-size: 40px;
@@ -732,7 +655,6 @@
 
     .companies2 .companies__inner2 .companies__inner--info .companies__info--title {
         color: var(--white, #FFF);
-
         /* Headline4 */
         font-family: Sora;
         font-size: 32px;
@@ -757,11 +679,9 @@
 
     .header__menu--list .header__menu--item {
         transition: none;
-
     }
-
-
 }
+
 
 @media screen and (max-width: 415px) {
 
@@ -782,7 +702,6 @@
 
     .designer .designer__inner .designer__inner--info .designer__info--title {
         color: #FFF;
-
         /* Headline3 */
         font-family: Sora;
         font-size: 40px;
@@ -795,7 +714,6 @@
 
     .designer .designer__inner .designer__inner--info .designer__info--title span {
         color: var(--aluminium, #88888D);
-
         /* Headline3 */
         font-family: Sora;
         font-size: 40px;
@@ -822,7 +740,6 @@
 
     .designer .designer__inner .designer__inner--links .designer__inner--menu .designer__menu--item {
         color: #FFF;
-
         /* Caption1 */
         font-family: Sora;
         font-size: 14px;
@@ -830,33 +747,6 @@
         font-weight: 400;
         line-height: 24px;
         /* 171.429% */
-    }
-
-    .values .values__inner .values__inner--title {
-        color: var(--white, #FFF);
-        text-align: center;
-
-        /* Headline4 */
-        font-family: Sora;
-        font-size: 32px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 40px;
-        /* 125% */
-        letter-spacing: -0.32px;
-    }
-
-    .values {
-        margin-top: 90px;
-    }
-
-    .values .values__items {
-        flex-direction: column;
-        gap: 33px;
-    }
-
-    .values .values__inner--items2 {
-        margin-top: 50px;
     }
 
     .numbers {
@@ -872,7 +762,6 @@
 
     .numbers .numbers__inner .numbers__inner--items .numbers__inner--title {
         color: #FFF;
-
         /* Headline3 */
         font-family: Sora;
         font-size: 40px;
@@ -918,13 +807,11 @@
 
     .companies2 .companies__inner2 .companies__inner--info .companies__info--title {
         color: var(--white, #FFF);
-
         /* Headline4 */
         font-family: Sora;
         font-size: 32px;
         font-style: normal;
         font-weight: 700;
-        line-height: 40px;
         /* 125% */
         letter-spacing: -0.32px;
     }
@@ -937,11 +824,11 @@
         margin-top: 5px;
     }
 
-
     .values .values__items .values__item--box .values__box--subtitle {
         line-height: 15px;
     }
 }
+
 
 @media screen and (max-width: 400px) {
     .designer .designer__inner .designer__inner--links .designer__inner--menu {
@@ -955,6 +842,7 @@
 
 
 }
+
 
 @media screen and (max-width: 300px) {
     .values .values__items .values__item--box {

@@ -5,16 +5,12 @@
     max-width: 1216px;
     height: 88px;
 
-
-
     .header__logo {
         display: inline-flex;
         justify-content: center;
         align-items: center;
         gap: 8px;
         margin-top: 5px;
-
-
 
         .header__logo--title {
             color: #FFF;
@@ -29,16 +25,14 @@
 
     .menu__icon {
         display: none;
-
-
     }
 }
+
 
 .header__menu--list {
     display: inline-flex;
     align-items: center;
     gap: 40px;
-
 
     .header__menu--item {
         color: #fff;
@@ -81,6 +75,7 @@
 
 }
 
+
 @media screen and (max-width: 610px) {
     .header__menu--list {
         .header__menu--item {
@@ -91,8 +86,6 @@
             }
         }
     }
-
-
 
     .header__inner {
 
@@ -150,7 +143,7 @@
 
         &.active {
             left: 0;
-            
+
         }
     }
 
@@ -163,6 +156,7 @@
     }
 
 }
+
 
 @media screen and (max-width: 415px) {
     .header__inner {
