@@ -53,12 +53,12 @@ public class InitUtils implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        initArticles(faker.number().numberBetween(15, 25));
-        initCompanies(faker.number().numberBetween(5, 10));
+        initArticles(faker.number().numberBetween(20, 30));
+        initCompanies(faker.number().numberBetween(10, 15));
         initContacts();
-        initProjects(faker.number().numberBetween(5, 10));
-        initSkills(faker.number().numberBetween(9, 12));
-        initSubscribers(faker.number().numberBetween(20, 30));
+        initProjects(faker.number().numberBetween(25, 35));
+        initSkills(faker.number().numberBetween(10, 15));
+        initSubscribers(faker.number().numberBetween(35, 50));
     }
 
     private void initArticles(int n) {

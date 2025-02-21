@@ -2,7 +2,6 @@ package s_lab.sichniy_andriy.portier_digital.controller;
 
 
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +14,7 @@ import s_lab.sichniy_andriy.portier_digital.service.PortfolioService;
 @RequestMapping( { "/", "/index" } )
 public class IndexController {
 
+    private final static int AMOUNT_LAST_PROJECTS = 4;
     private final PortfolioService portfolioService;
 
     public IndexController(
@@ -26,11 +26,11 @@ public class IndexController {
 
     @GetMapping( { "", "/" } )
     public ModelAndView index(ModelAndView modelAndView) {
+        List<ProjectDto> projectDtoList = portfolioService.getLastProjects(AMOUNT_LAST_PROJECTS);
+
         modelAndView.setViewName("index");
-        List<ProjectDto> projectDtoList = portfolioService.getAllProjects().stream()
-                .limit(3)
-                .collect(Collectors.toList());
         modelAndView.addObject("projects", projectDtoList);
+
         return modelAndView;
     }
 
