@@ -11,4 +11,13 @@ public interface CompaniesRepository extends JpaRepository<Company, Long> {
     @Override
     List<Company> findAll(Sort sort);
 
+    @Override
+    <S extends Company> S saveAndFlush(S entity);
+
+    @Override
+    boolean existsById(Long aLong);
+
+    @Override
+    void deleteById(Long aLong);
+
 }
