@@ -11,4 +11,11 @@ public interface SkillsRepository extends JpaRepository<Skill, Long> {
     @Override
     List<Skill> findAll(Sort sort);
 
+    boolean existsSkillById(long id);
+
+    void deleteSkillById(long id);
+
+    @Override
+    <S extends Skill> S saveAndFlush(S entity);
+
 }

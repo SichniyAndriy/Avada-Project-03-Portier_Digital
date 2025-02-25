@@ -13,4 +13,10 @@ public interface AboutService {
 
     List<SkillDto> getAllSkills();
 
+    boolean deleteSkillsById(long id);
+
+    SkillDto save(SkillDto skillDto);
+
+    List<SkillDto> getSortedSkills(String sort);
+
 }

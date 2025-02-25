@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import s_lab.sichniy_andriy.portier_digital.model.Company;
 import s_lab.sichniy_andriy.portier_digital.model.Contact;
 import s_lab.sichniy_andriy.portier_digital.model.Skill;
@@ -62,11 +64,36 @@ public class AboutServiceImpl implements AboutService {
         return contactMapper.toDto(contacts);
     }
 
+    // ============================== SKILLS ==============================\\
     @Override
     public List<SkillDto> getAllSkills() {
         List<Skill> skills =
                 skillsRepository.findAll(Sort.by(Direction.ASC, "id"));
         return skillMapper.toDto(skills);
     }
+
+    @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public boolean deleteSkillsById(long id) {
+        boolean res = skillsRepository.existsSkillById(id);
+        if (res) {
+            skillsRepository.deleteById(id);
+        }
+        return res;
+    }
+
+    @Override
+    public SkillDto save(SkillDto skillDto) {
+        Skill skill = skillMapper.toEntity(skillDto);
+        Skill saved = skillsRepository.saveAndFlush(skill);
+        return skillMapper.toDto(saved);
+    }
+
+    @Override
+    public List<SkillDto> getSortedSkills(String sort) {
+        List<Skill> skills = skillsRepository.findAll(Sort.by(Direction.ASC, sort));
+        return skillMapper.toDto(skills);
+    }
+    // ============================== \SKILLS ==============================\\
 
 }
