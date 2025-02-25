@@ -1,8 +1,14 @@
-/*global document console location axios $ confirm event DOMParser*/
+/*global document console alert location axios $ confirm event Event DOMParser FormData FileReader*/
+const EXT = "jpg";
+const PREFIX_URL = "/PortierDigital-SichniyA";
+
 
 document.addEventListener( "DOMContentLoaded", function () {
     addListenersToEditBtns();
     addListenersToDeleteBtns();
+    addListenerToSaveFormBtn();
+    addListenerToCloseModalBtns();
+    addListenerToImageInput();
     addListenerToSizeSelect();
     addListenerToSortSelect();
 } );
@@ -16,15 +22,15 @@ async function addListenersToEditBtns() {
             console.log( idTxt );
             const id = parseInt( idTxt );
             console.log( idTxt );
-            axios.get( `${ location.href }/projects/${ id }` )
+            axios.get( `${ location.href }/${ id }` )
                 .then( response => {
                     const obj = JSON.parse( JSON.stringify( response.data ) );
-                    const $form = $( "#project__form" )
+                    $( "#project__form" )
                         .find( "#project_id__input" ).val( obj.id ).end()
                         .find( "#project_title" ).val( obj.title ).end()
-                        .find( "#project_description" ).val( obj.description ).end();
-                    if ( obj.picturePath ) {
-                        $form.children( "form #project__img" ).attr( "src", obj.picturePath );
+                        .find( "#project_description" ).val( obj.description );
+                    if ( obj.imagePath ) {
+                        $( "form #project__img" ).attr( "src", `${ PREFIX_URL }/${ obj.imagePath }_middle.${ EXT }` );
                     }
                 } )
                 .catch( error => console.error( error ) );
@@ -40,7 +46,7 @@ async function addListenersToDeleteBtns() {
             const idTxt = tableRow.textContent.trim();
             const id = parseInt( idTxt );
             if ( confirm( "Ви впевнені що хочете видалити інформацію про проект" ) ) {
-                axios.delete( `${ location.href }/projects/delete/${ id }` )
+                axios.delete( `${ location.href }/delete/${ id }` )
                     .then( responce => {
                         console.log( responce.data );
                         $( tableRow ).fadeOut( 250, () => {
@@ -51,6 +57,46 @@ async function addListenersToDeleteBtns() {
             }
         } );
     }
+}
+
+async function addListenerToSaveFormBtn() {
+    document.getElementById( "save_changes__btn" ).addEventListener( "click", async function () {
+        const form = document.getElementById( "project__form" );
+        const formData = new FormData( form );
+        const file = document.getElementById( "project_image__input" ).files[ 0 ];
+        let imagePath = file ?
+            await saveImageOnServer( file, formData.get( "title" ) ) :
+            document.getElementById( "project__img" ).src;
+        formData.append( "imagePath", imagePath );
+
+        axios.post( `${ location.href }/save`, formData )
+            .then( responce => {
+                console.log( "Id: " + responce.data );
+                console.log( "Дані збережено" );
+
+                document.getElementById( "close_modal__btn" ).dispatchEvent( new Event( "click" ) );
+            } )
+            .catch( error => alert( error.message ) );
+    } );
+}
+
+async function addListenerToCloseModalBtns() {
+    document.getElementById( "close_modal__btn" ).addEventListener( "click", function () { clearForm(); } );
+    document.getElementById( "up_close_modal__btn" ).addEventListener( "click", function () { clearForm(); } );
+}
+
+async function addListenerToImageInput() {
+    const imgInput = document.getElementById( "project_image__input" );
+    imgInput.addEventListener( "change", function () {
+        const file = this.files[ 0 ];
+        if ( file ) {
+            const fileReader = new FileReader();
+            fileReader.onload = function ( event ) {
+                document.getElementById( "project__img" ).src = event.target.result;
+            };
+            fileReader.readAsDataURL( file );
+        }
+    } );
 }
 
 async function addListenerToSizeSelect() {
@@ -75,15 +121,8 @@ async function addListenerToSortSelect() {
         } );
 }
 
-// eslint-disable-next-line no-unused-vars
-function goToPage( page ) {
-    const size = document.getElementById( "size__select" ).value;
-    const col = document.getElementById( "sort__select" ).value;
-    doPagination( page, size, col );
-}
-
 async function doPagination( page, size, col ) {
-    axios.get( `${ location.href }/projects?page=${ page }&size=${ size }&col=${ col }` )
+    axios.get( `${ location.href }?page=${ page }&size=${ size }&col=${ col }` )
         .then( responce => {
             console.log( `page=${ page }; size=${ size }; col=${ col };` );
             const newPage = new DOMParser().parseFromString( responce.data, "text/html" );
@@ -105,4 +144,36 @@ async function doPagination( page, size, col ) {
             } );
         } )
         .catch( error => console.error( error ) );
+}
+
+async function saveImageOnServer( file, imgName ) {
+    const formData = new FormData();
+    formData.append( "file", file, imgName );
+    formData.append( "timestamp", new Date().getTime().toString() );
+    formData.append( "ext", EXT );
+
+    try {
+        const responce = await axios.post( `${ location.href }/image/save`, formData );
+        console.log( responce.data );
+        return responce.data;
+    } catch ( error ) {
+        alert( "Помилка збереження картинки" + error.message );
+        return null;
+    }
+}
+
+// eslint-disable-next-line no-unused-vars
+function goToPage( page ) {
+    const size = document.getElementById( "size__select" ).value;
+    const col = document.getElementById( "sort__select" ).value;
+    doPagination( page, size, col );
+}
+
+function clearForm() {
+    document.getElementById( "project_id__input" ).value = "";
+    document.getElementById( "project__img" ).src = `${ PREFIX_URL }/images/project_stub_middle.webp`;
+    document.getElementById( "project_image__input" ).files[ 0 ] = null;
+    document.getElementById( "project_image__input" ).value = "";
+    document.getElementById( "project_title" ).value = "";
+    document.getElementById( "project_description" ).value = "";
 }

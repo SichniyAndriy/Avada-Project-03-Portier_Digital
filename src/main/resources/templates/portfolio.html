@@ -32,17 +32,18 @@
     <section class="projects">
       <div class="container" th:each="p : ${projects}">
         <div class="container__img position-relative">
-          <img class="container__img--element" th:src="${p.picturePath} ?: @{/images/project_stub_large.webp}" alt="" />
+          <img class="container__img--element"
+            th:src="${p.imagePath} ? @{|${p.imagePath}_large.jpg|} : @{/images/project_stub_large.webp}" alt="" />
           <h3 class="position-absolute top-50 start-50 translate-middle"><span class="badge text-bg-secondary"
               th:utext="${p.title}">New</span></h3>
         </div>
         <div class="container__img2">
-          <img class="container__img--element2" th:src="${p.picturePath} ?: @{/images/project_stub_middle.webp}"
-            alt="" />
+          <img class="container__img--element2"
+            th:src="${p.imagePath} ? @{|${p.imagePath}_middle.jpg|} : @{/images/project_stub_middle.webp}" alt="" />
         </div>
         <div class="container__img3">
-          <img class="container__img--element3" th:src="${p.picturePath} ?: @{/images/project_stub_small.webp}"
-            alt="" />
+          <img class="container__img--element3"
+            th:src="${p.imagePath} ? @{|${p.imagePath}_small.jpg|} : @{/images/project_stub_small.webp}" alt="" />
         </div>
       </div>
     </section>
