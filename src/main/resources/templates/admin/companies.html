@@ -31,20 +31,20 @@
                 </select>
             </div>
         </section>
-        <section id="skills_table__section">
+        <section id="company_table__section">
             <table class="table table-sm table-light table-bordered table-hover table-striped align-middle"
-                th:fragment="skillsTable">
+                th:fragment="companiesTable">
                 <thead class="text-center">
                     <th scope="col" style="width: 5%;">Id</th>
                     <th scope="col" style="width: 25%;">Title</th>
-                    <th scope="col" style="width: 60%;">Positon</th>
+                    <th scope="col" style="width: 60%;">Position</th>
                     <th scope="col" style="width: 10%;">Actions</th>
                 </thead>
                 <tbody class="text-center">
                     <tr th:each="c : ${companies}" th:object="${c}">
                         <td th:text="*{id}">id</td>
                         <td th:text="*{title}">title</td>
-                        <td th:text="*{positin}">position</td>
+                        <td th:text="*{position}">position</td>
                         <td class="align-content-center p-1">
                             <div id="btn__block" class="d-flex gap-1 justify-content-center align-items-center">
                                 <button id="edit__btn" th:id="|edit__btn_*{id}|" type="button"
@@ -84,17 +84,17 @@
                     </div>
                     <div class="modal-body">
                         <form id="project__form">
-                            <input type="text" id="skill_id__input" name="id" hidden>
+                            <input type="text" id="company_id__input" name="id" hidden>
                             <div class="d-flex flex-column gap-4">
                                 <div class="mb-3">
-                                    <label for="skill_title" class="form-label">Companiy title</label>
-                                    <input type="text" id="skill_title" name="title" class="form-control"
-                                        placeholder="Введіть назву скіла">
+                                    <label for="company_title" class="form-label">Companiy title</label>
+                                    <input type="text" id="company_title" name="title" class="form-control"
+                                        placeholder="Введіть назву компанії">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="skill_description" class="form-label">Company description</label>
-                                    <textarea id="skill_description" name="description" rows="20" class="form-control"
-                                        placeholder="Введіть опис скіла"></textarea>
+                                    <label for="company_position" class="form-label">Position in company</label>
+                                    <textarea id="company_position" name="position" rows="20" class="form-control"
+                                        placeholder="Введіть посаду в компанії"></textarea>
                                 </div>
                             </div>
                         </form>
@@ -115,7 +115,7 @@
         crossorigin="anonymous"></script>
     <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script defer th:src="@{/js/admin/skills-scripts.js}"></script>
+    <script defer th:src="@{/js/admin/companies-scripts.js}"></script>
 </body>
 
 </html>
