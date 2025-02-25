@@ -12,14 +12,37 @@
     <title>Document</title>
 </head>
 
-<body class="container d-flex">
-    <aside class="w-25 text-bg-dark" th:replace="~{admin/index :: side-panel}"></aside>
-    <main class="w-75">
-        <header class="w-100">
-            <p id="header__title" class="my-4 mx-3 fs-3">Projects</p>
+<body class="container-fluid row row-cols-2">
+    <aside th:replace="~{admin/index :: side-panel}"></aside>
+    <main class="container-fluid col-10 d-flex flex-column gap-4 px-4">
+        <header>
+            <p id="header__title" class="my-4 fs-3">Projects</p>
         </header>
-        <section class="container ps-3">
-            <table class="table table-sm table-light table-bordered table-hover table-striped align-middle">
+        <section id="page_set" class="w-100 d-flex justify-content-between align-items-center">
+            <button type="button" class="btn rounded-3 btn-secondary" data-bs-toggle="modal"
+                data-bs-target="#edit_project__modal" style="width: 192px;">
+                Додати проект
+            </button>
+            <div class="d-flex gap-3">
+                <div style="width: 128px;">
+                    <label for="size__select" class="form-label">Розмір сторінки</label>
+                    <select id="size__select" class="form-select" aria-label="Default select example">
+                        <option value="10" selected>10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div style="width: 128px;">
+                    <label for="sort__select" class="form-label">Сортувати по</label>
+                    <select id="sort__select" class="form-select" aria-label="Default select example">
+                        <option value="id" selected>Id</option>
+                        <option value="title">Title</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+        <section>
+            <table class="table table-sm table-light table-borderless table-hover table-striped align-middle">
                 <thead class="text-center">
                     <th scope="col" style="width: 5%;">Id</th>
                     <th scope="col" style="width: 25%;">Title</th>
@@ -33,8 +56,9 @@
                         <td th:text="*{description}">description</td>
                         <td class="align-content-center p-1">
                             <div id="btn__block" class="d-flex gap-1 justify-content-center align-items-center">
-                                <button id="edit__btn" class="btn btn-success text-center"
-                                    th:onclick="editProject([[*{id}]])">
+                                <button id="edit__btn" th:id="|edit__btn_*{id}|" type="button"
+                                    class="btn btn-success text-center" data-bs-toggle="modal"
+                                    data-bs-target="#edit_project__modal">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path
@@ -43,8 +67,8 @@
                                             d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                                     </svg>
                                 </button>
-                                <button id="delete__btn" class="btn btn-danger text-center"
-                                    th:onclick="deletePoject([[*{id}]])">
+                                <button id="delete__btn" th:id="|delete__btn_*{id}|" type="button"
+                                    class="btn btn-danger text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
                                         <path
@@ -52,14 +76,90 @@
                                     </svg>
                                 </button>
                             </div>
+
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <!-- Pagination -->
+            <div id="pagination" class="mt-4">
+                <nav aria-label="pagination">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" th:classappend="${not projects.hasPrevious} ? disabled">
+                            <a class="page-link" th:onclick="goToPage([[${projects.getNumber}]])">Previous</a>
+                        </li>
+                        <li class="page-item" th:each="n : ${#numbers.sequence(1, projects.getTotalPages)}"
+                            th:classappend="${n} == (${projects.getNumber} + 1) ? active">
+                            <a class="page-link" th:text="${n}" th:onclick="goToPage([[${n}]])">1</a>
+                        </li>
+                        <li class="page-item" th:classappend="${not projects.hasNext} ? disabled">
+                            <a class="page-link" th:onclick="goToPage([[(${projects.getNumber} + 2)]])">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- /Pagination -->
         </section>
+        <!-- Modal -->
+        <div class="modal fade" id="edit_project__modal" tabindex="-1" aria-labelledby="edit_project__modal__label"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="edit_project__modal__label">Форма збереження</h1>
+                        <button type="button" class="btn-close" id="up_close_modal__btn" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="project__form">
+                            <input type="text" id="project_id__input" name="id" hidden>
+                            <div class="row row-cols-2">
+                                <div class="col-5 d-flex flex-column">
+                                    <div class="mb-3">
+                                        <img id="project__img" class="img-fluid rounded-3"
+                                            th:src="@{ /images/project_stub_middle.webp }" alt="Project Image"
+                                            title="Project Image">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="project_image__input" form="form-label">Виберіть нову
+                                            картинку</label>
+                                        <input type="file" id="project_image__input" class="form-control"
+                                            accept="images/*">
+                                    </div>
+                                </div>
+                                <div class="col-7 d-flex flex-column">
+                                    <div class="mb-3">
+                                        <label for="project_title" class="form-label">Project title</label>
+                                        <input type="text" id="project_title" name="title" class="form-control"
+                                            placeholder="Введіть назву проекта">
+
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="project_description" class="form-label">Project Description</label>
+                                        <textarea id="project_description" name="description" rows="20"
+                                            class="form-control" placeholder="Введіть опис проекта"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="close_modal__btn" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="save_changes__btn" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Modal -->
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" async></script>
-    <script th:src="@{/js/admin/project-script.js}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script th:src="@{/js/admin/project-script.js}"></script>
 </body>
 
 </html>

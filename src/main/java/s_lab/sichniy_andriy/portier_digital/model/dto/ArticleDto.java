@@ -7,8 +7,8 @@ import java.io.Serializable;
  */
 public record ArticleDto(
         Long id,
-        String picturePath,
         String title,
-        String content
-) implements Serializable {
+        String content,
+        String imagePath
+        ) implements Serializable {
 }

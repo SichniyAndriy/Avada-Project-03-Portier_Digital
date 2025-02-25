@@ -25,8 +25,8 @@ public class Article {
     @JdbcTypeCode(SqlTypes.BIGINT)
     private Long id;
 
-    @Column(name = "picture_path")
-    private String picturePath;
+    @Column(name = "image_path")
+    private String imagePath;
 
     private String title;
 

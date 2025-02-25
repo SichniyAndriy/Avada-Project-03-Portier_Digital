@@ -31,8 +31,8 @@ public class Project {
     @Column(length = 1000, nullable = false)
     private String description;
 
-    @Column(name = "picture_path")
-    private String picturePath;
+    @Column(name = "image_path")
+    private String imagePath;
 
 
     @Override

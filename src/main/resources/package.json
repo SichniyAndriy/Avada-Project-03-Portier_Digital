@@ -4,7 +4,10 @@
     "jquery": "^3.7.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.21.0",
     "@types/axios": "^0.9.36",
-    "@types/jquery": "^3.5.32"
+    "@types/jquery": "^3.5.32",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0"
   }
 }

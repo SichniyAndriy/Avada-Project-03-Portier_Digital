@@ -9,6 +9,6 @@ public record ProjectDto(
         Long id,
         String title,
         String description,
-        String picturePath
+        String imagePath
 ) implements Serializable {
 }

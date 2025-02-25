@@ -1,8 +1,12 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
   web:
     resources:
       static-locations: classpath:/static/, 
-        file:/apache-tomcat-10.1.34/webapps/, 
+        file:/apache-tomcat-10.1.34/webapps/,
         file:/home/slj/web/slj.demodev.cc/public_html/
   application:
     name: PortierDigital
@@ -14,7 +18,7 @@ spring:
       enabled: true
       additional-exclude: static/images
       poll-interval: 1000ms
-      quiet-period: 500ms
+      quiet-period: 200ms
   datasource:
     username: slj_kinocms
     password: 4h8bLzSDig
