@@ -49,7 +49,8 @@ public class AboutServiceImpl implements AboutService {
         this.skillsRepository = skillsRepository;
     }
 
-
+    // ===========================================================================\\
+    //                                  COMPANIES                                  \\
     @Override
     public List<CompanyDto> getAllCompanies() {
         List<Company> companies =
@@ -58,13 +59,54 @@ public class AboutServiceImpl implements AboutService {
     }
 
     @Override
+    public List<CompanyDto> getSortedCompanies(String sort) {
+        List<Company> companies = companiesRepository.findAll(Sort.by(Direction.ASC, sort));
+        return companyMapper.toDto(companies);
+    }
+
+    @Override
+    public CompanyDto saveCompany(CompanyDto companyDto) {
+        Company company = companyMapper.toEntity(companyDto);
+        Company updCompany = companiesRepository.saveAndFlush(company);
+        return companyMapper.toDto(updCompany);
+    }
+
+    @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public boolean deleteCompanyById(long id) {
+        boolean res = companiesRepository.existsById(id);
+        if (res) {
+            companiesRepository.deleteById(id);
+        }
+        return res;
+    }
+
+     // ===========================================================================\\
+    //                                 CONTACTS                                     \\
+    @Override
     public List<ContactDto> getAllContacts() {
         List<Contact> contacts =
                 contactsRepository.findAll(Sort.by(Direction.ASC, "id"));
         return contactMapper.toDto(contacts);
     }
 
-    // ============================== SKILLS ==============================\\
+    @Override
+    public List<ContactDto> getSortedContacts(String sort) {
+        return List.of();
+    }
+
+    @Override
+    public ContactDto saveContact(ContactDto contactDto) {
+        return null;
+    }
+
+    @Override
+    public boolean deleteContactById(long id) {
+        return false;
+    }
+
+    // ===========================================================================\\
+    //                                   SKILLS                                    \\
     @Override
     public List<SkillDto> getAllSkills() {
         List<Skill> skills =
@@ -83,7 +125,7 @@ public class AboutServiceImpl implements AboutService {
     }
 
     @Override
-    public SkillDto save(SkillDto skillDto) {
+    public SkillDto saveSkill(SkillDto skillDto) {
         Skill skill = skillMapper.toEntity(skillDto);
         Skill saved = skillsRepository.saveAndFlush(skill);
         return skillMapper.toDto(saved);
@@ -94,6 +136,5 @@ public class AboutServiceImpl implements AboutService {
         List<Skill> skills = skillsRepository.findAll(Sort.by(Direction.ASC, sort));
         return skillMapper.toDto(skills);
     }
-    // ============================== \SKILLS ==============================\\
 
 }

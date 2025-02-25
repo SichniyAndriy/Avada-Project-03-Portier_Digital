@@ -9,14 +9,29 @@ public interface AboutService {
 
     List<CompanyDto> getAllCompanies();
 
+    List<CompanyDto> getSortedCompanies(String sort);
+
+    CompanyDto saveCompany(CompanyDto companyDto);
+
+    boolean deleteCompanyById(long id);
+
+    //===============================================================\\
+
     List<ContactDto> getAllContacts();
 
+    List<ContactDto> getSortedContacts(String sort);
+
+    ContactDto saveContact(ContactDto contactDto);
+
+    boolean deleteContactById(long id);
+
+    //===============================================================\\
     List<SkillDto> getAllSkills();
 
-    boolean deleteSkillsById(long id);
-
-    SkillDto save(SkillDto skillDto);
-
     List<SkillDto> getSortedSkills(String sort);
+
+    SkillDto saveSkill(SkillDto skillDto);
+
+    boolean deleteSkillsById(long id);
 
 }
