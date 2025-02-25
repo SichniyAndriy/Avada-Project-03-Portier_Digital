@@ -60,7 +60,8 @@ public class SkillsController {
     public ResponseEntity<SkillDto> saveSkill(
             @ModelAttribute SkillDto skillDto
     ) {
-        SkillDto newSkillDto = aboutService.save(skillDto);
+        SkillDto newSkillDto = aboutService.saveSkill(skillDto);
         return ResponseEntity.ok(newSkillDto);
     }
+
 }

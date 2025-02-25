@@ -2,7 +2,6 @@ package s_lab.sichniy_andriy.portier_digital.controller.admin;
 
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,14 +24,11 @@ import s_lab.sichniy_andriy.portier_digital.service.ServiceUtils;
 public class ProjectController {
 
     private final PortfolioService portfolioService;
-    private final ResourceLoader resourceLoader;
 
     public ProjectController(
-            @Autowired PortfolioService portfolioService,
-            @Autowired ResourceLoader resourceLoader
+            @Autowired PortfolioService portfolioService
     ) {
         this.portfolioService = portfolioService;
-        this.resourceLoader = resourceLoader;
     }
 
 
@@ -87,4 +83,5 @@ public class ProjectController {
         String res = ServiceUtils.uploadImageOnServer(file, file.getName(), timestamp, ext, "projects");
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
+
 }
