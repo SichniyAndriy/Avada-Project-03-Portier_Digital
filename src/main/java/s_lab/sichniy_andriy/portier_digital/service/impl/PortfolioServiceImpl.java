@@ -73,7 +73,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public boolean deleteById(long id) {
+    public boolean deleteProject(long id) {
         boolean res = projectRepository.existsById(id);
         if (res) {
             projectRepository.deleteById(id);

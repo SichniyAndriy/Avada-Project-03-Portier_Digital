@@ -14,10 +14,16 @@ public interface BlogService {
 
     ArticleDto getArticleById(long id);
 
-    boolean deleteById(long id);
+    boolean deleteArticle(long id);
 
     long saveArticle(ArticleDto articleDto);
 
     List<SubscriberDto> getAllSubscribers();
+
+    Page<SubscriberDto> getSubscriberPage(int page, int size, String col);
+
+    long saveSubscriber(SubscriberDto subscriberDto);
+
+    boolean deleteSubscriber(long id);
 
 }

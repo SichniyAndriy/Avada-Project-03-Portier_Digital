@@ -14,7 +14,7 @@ public interface PortfolioService {
 
     ProjectDto getProjectById(long id);
 
-    boolean deleteById(long id);
+    boolean deleteProject(long id);
 
     long saveProject(ProjectDto projectDto);
 

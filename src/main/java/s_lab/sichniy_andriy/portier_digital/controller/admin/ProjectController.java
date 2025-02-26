@@ -61,7 +61,7 @@ public class ProjectController {
     public ResponseEntity<ProjectDto> deleteProjectById(
             @PathVariable long id
     ) {
-        if (portfolioService.deleteById(id)) {
+        if (portfolioService.deleteProject(id)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

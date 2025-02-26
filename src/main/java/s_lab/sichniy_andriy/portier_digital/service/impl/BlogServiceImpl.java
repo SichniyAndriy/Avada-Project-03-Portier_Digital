@@ -77,7 +77,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public boolean deleteById(long id) {
+    public boolean deleteArticle(long id) {
         boolean res = articlesRepository.existsById(id);
         if (res) {
             articlesRepository.deleteById(id);
@@ -89,8 +89,37 @@ public class BlogServiceImpl implements BlogService {
 //                                  COMPANIES                                  \\
     @Override
     public List<SubscriberDto> getAllSubscribers() {
-        List<Subscriber> subscribers = subscribersRepository.findAll(Sort.by(Direction.ASC, "email"));
+        List<Subscriber> subscribers =
+                subscribersRepository.findAll(Sort.by(Direction.ASC, "id"));
         return subscriberMapper.toDto(subscribers);
+    }
+
+    @Override
+    public Page<SubscriberDto> getSubscriberPage(int page, int size, String col) {
+        long amountAll = subscribersRepository.count();
+        long pages = amountAll / size + (amountAll % size == 0 ? 0 : 1);
+        if (page > pages) {
+            page = (int) pages;
+        }
+        Page<Subscriber> subscribers =
+                subscribersRepository.findAll(PageRequest.of(--page, size, Sort.by(col)));
+        return subscribers.map(subscriberMapper::toDto);
+    }
+
+    @Override
+    public long saveSubscriber(SubscriberDto subscriberDto) {
+        Subscriber subscriber = subscriberMapper.toEntity(subscriberDto);
+         return subscribersRepository.save(subscriber).getId();
+    }
+
+    @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public boolean deleteSubscriber(long id) {
+        boolean res = subscribersRepository.existsById(id);
+        if (res) {
+            subscribersRepository.deleteById(id);
+        }
+        return res;
     }
 
 }
