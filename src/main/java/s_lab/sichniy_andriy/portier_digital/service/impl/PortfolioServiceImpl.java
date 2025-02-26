@@ -65,6 +65,13 @@ public class PortfolioServiceImpl implements PortfolioService {
     }
 
     @Override
+    public long saveProject(ProjectDto projectDto) {
+        Project project = projectMapper.toEntity(projectDto);
+        Project saved = projectRepository.save(project);
+        return saved.getId();
+    }
+
+    @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public boolean deleteById(long id) {
         boolean res = projectRepository.existsById(id);
@@ -72,13 +79,6 @@ public class PortfolioServiceImpl implements PortfolioService {
             projectRepository.deleteById(id);
         }
         return res;
-    }
-
-    @Override
-    public long saveProject(ProjectDto projectDto) {
-        Project project = projectMapper.toEntity(projectDto);
-        Project saved = projectRepository.save(project);
-        return saved.getId();
     }
 
 }

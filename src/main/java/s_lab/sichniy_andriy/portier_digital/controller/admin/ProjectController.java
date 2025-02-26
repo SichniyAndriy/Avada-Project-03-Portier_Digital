@@ -19,6 +19,7 @@ import s_lab.sichniy_andriy.portier_digital.model.dto.ProjectDto;
 import s_lab.sichniy_andriy.portier_digital.service.PortfolioService;
 import s_lab.sichniy_andriy.portier_digital.service.ServiceUtils;
 
+
 @Controller
 @RequestMapping("/admin")
 public class ProjectController {
@@ -80,7 +81,7 @@ public class ProjectController {
             @RequestParam String timestamp,
             @RequestParam String ext
     ) throws IOException {
-        String res = ServiceUtils.uploadImageOnServer(file, file.getName(), timestamp, ext, "projects");
+        String res = ServiceUtils.saveImages(file, ext, "projects");
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
