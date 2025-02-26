@@ -61,7 +61,7 @@ public class ArticlesController {
     public ResponseEntity<ArticleDto> deleteArticleById(
             @PathVariable long id
     ) {
-        if (blogService.deleteById(id)) {
+        if (blogService.deleteArticle(id)) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

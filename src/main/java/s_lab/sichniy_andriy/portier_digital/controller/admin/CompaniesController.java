@@ -30,7 +30,7 @@ public class CompaniesController {
     }
 
     @GetMapping({"/companies/", "/companies"})
-    public ModelAndView skills(ModelAndView modelAndView) {
+    public ModelAndView companies(ModelAndView modelAndView) {
         List<CompanyDto> companyDtoList = aboutService.getAllCompanies();
         modelAndView.addObject("companies", companyDtoList);
         modelAndView.setViewName("admin/companies");
@@ -38,7 +38,7 @@ public class CompaniesController {
     }
 
     @GetMapping({"/companies/sort"})
-    public String sortedSkills(
+    public String sortedCompanies(
             Model model,
             @RequestParam String sort
     ) {
@@ -48,7 +48,7 @@ public class CompaniesController {
     }
 
     @DeleteMapping("/companies/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteSkill(
+    public ResponseEntity<HttpStatus> deleteCompanyById(
             @PathVariable long id
     ) {
         boolean res = aboutService.deleteCompanyById(id);
@@ -56,7 +56,7 @@ public class CompaniesController {
     }
 
     @PostMapping("/companies/save")
-    public ResponseEntity<CompanyDto> saveSkill(
+    public ResponseEntity<CompanyDto> saveCompany(
             @ModelAttribute CompanyDto companyDto
     ) {
         CompanyDto newCompanyDto = aboutService.saveCompany(companyDto);
