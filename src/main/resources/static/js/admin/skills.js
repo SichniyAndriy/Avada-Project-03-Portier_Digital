@@ -46,7 +46,7 @@ async function addListenerToCloseBtns() {
 async function addListenerToSaveBtn() {
     const saveBtn = document.getElementById( "save_changes__btn" );
     saveBtn.addEventListener( "click", function () {
-        const form = document.getElementById( "project__form" );
+        const form = document.getElementById( "skill__form" );
         const formData = new FormData( form );
         let isNew = !formData.get( "id" );
         axios.post( `${ location.href }/save`, formData )

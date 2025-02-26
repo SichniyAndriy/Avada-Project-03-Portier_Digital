@@ -20,7 +20,7 @@
         </header>
         <section id="page_set" class="w-100 d-flex justify-content-between align-items-center">
             <button type="button" class="btn rounded-3 btn-secondary" data-bs-toggle="modal"
-                data-bs-target="#edit_project__modal" style="width: 192px;">
+                data-bs-target="#edit_skill__modal" style="width: 192px;">
                 Додати скіл
             </button>
             <div style="width: 128px;">
@@ -49,7 +49,7 @@
                             <div id="btn__block" class="d-flex gap-1 justify-content-center align-items-center">
                                 <button id="edit__btn" th:id="|edit__btn_*{id}|" type="button"
                                     class="btn btn-success text-center" data-bs-toggle="modal"
-                                    data-bs-target="#edit_project__modal">
+                                    data-bs-target="#edit_skill__modal">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path
@@ -73,17 +73,17 @@
             </table>
         </section>
         <!-- Modal -->
-        <div class="modal fade" id="edit_project__modal" tabindex="-1" aria-labelledby="edit_project__modal__label"
+        <div class="modal fade" id="edit_skill__modal" tabindex="-1" aria-labelledby="edit_skill__modal__label"
             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="edit_project__modal__label">Форма збереження</h1>
+                        <h1 class="modal-title fs-5" id="edit_skill__modal__label">Форма збереження</h1>
                         <button type="button" class="btn-close" id="up_close_modal__btn" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="project__form">
+                        <form id="skill__form">
                             <input type="text" id="skill_id__input" name="id" hidden>
                             <div class="d-flex flex-column gap-4">
                                 <div class="mb-3">
@@ -115,7 +115,7 @@
         crossorigin="anonymous"></script>
     <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script defer th:src="@{/js/admin/skills-scripts.js}"></script>
+    <script defer th:src="@{/js/admin/skills.js}"></script>
 </body>
 
 </html>
