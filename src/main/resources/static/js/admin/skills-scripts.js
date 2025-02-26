@@ -63,7 +63,7 @@ async function addListenerToSaveBtn() {
                 } else {
                     for ( const row of tableBody.children ) {
                         if ( row.children[ 0 ].textContent === String( obj.id ) ) {
-                            row.children[ 1 ].textContent = obj.text;
+                            row.children[ 1 ].textContent = obj.title;
                             row.children[ 2 ].textContent = obj.description;
                             break;
                         }

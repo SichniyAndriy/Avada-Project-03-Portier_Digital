@@ -74,7 +74,6 @@ async function addListenerToSaveBtn() {
                 document.getElementById( "close_modal__btn" ).dispatchEvent( new Event( "click" ) );
             } )
             .catch( err => console.error( err.message ) );
-
     } );
 }
 

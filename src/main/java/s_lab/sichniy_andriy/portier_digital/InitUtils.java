@@ -57,7 +57,7 @@ public class InitUtils implements CommandLineRunner {
         initCompanies(faker.number().numberBetween(10, 15));
         initContacts();
         initProjects(faker.number().numberBetween(25, 35));
-        initSkills(faker.number().numberBetween(10, 15));
+        initSkills(faker.number().numberBetween(8, 12));
         initSubscribers(faker.number().numberBetween(35, 50));
     }
 
