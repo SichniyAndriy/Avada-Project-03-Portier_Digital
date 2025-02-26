@@ -10,4 +10,10 @@ public interface SubscribersRepository extends JpaRepository<Subscriber, Long> {
     @Override
     List<Subscriber> findAll(Sort sort);
 
+    @Override
+    boolean existsById(Long aLong);
+
+    @Override
+    void deleteById(Long aLong);
+
 }
