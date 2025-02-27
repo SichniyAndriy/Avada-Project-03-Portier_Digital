@@ -25,22 +25,23 @@ import s_lab.sichniy_andriy.portier_digital.service.AboutService;
 @Service
 public class AboutServiceImpl implements AboutService {
 
-    private final CompanyMapper companyMapper;
-    private final ContactMapper contactMapper;
-    private final SkillMapper skillMapper;
-
     private final CompaniesRepository companiesRepository;
     private final ContactsRepository contactsRepository;
     private final SkillsRepository skillsRepository;
 
+    private final CompanyMapper companyMapper;
+    private final ContactMapper contactMapper;
+    private final SkillMapper skillMapper;
+
+
     public AboutServiceImpl(
-            @Autowired CompanyMapper companyMapper,
-            @Autowired ContactMapper contactMapper,
-            @Autowired SkillMapper skillMapper,
             @Autowired CompaniesRepository companiesRepository,
             @Autowired ContactsRepository contactsRepository,
-            @Autowired SkillsRepository skillsRepository
-    ) {
+            @Autowired SkillsRepository skillsRepository,
+            @Autowired CompanyMapper companyMapper,
+            @Autowired ContactMapper contactMapper,
+            @Autowired SkillMapper skillMapper
+            ) {
         this.companyMapper = companyMapper;
         this.contactMapper = contactMapper;
         this.skillMapper = skillMapper;
@@ -90,21 +91,6 @@ public class AboutServiceImpl implements AboutService {
         return contactMapper.toDto(contacts);
     }
 
-    @Override
-    public List<ContactDto> getSortedContacts(String sort) {
-        return List.of();
-    }
-
-    @Override
-    public ContactDto saveContact(ContactDto contactDto) {
-        return null;
-    }
-
-    @Override
-    public boolean deleteContactById(long id) {
-        return false;
-    }
-
     // ===========================================================================\\
     //                                   SKILLS                                    \\
     @Override
@@ -115,13 +101,9 @@ public class AboutServiceImpl implements AboutService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE)
-    public boolean deleteSkillsById(long id) {
-        boolean res = skillsRepository.existsSkillById(id);
-        if (res) {
-            skillsRepository.deleteById(id);
-        }
-        return res;
+    public List<SkillDto> getSortedSkills(String sort) {
+        List<Skill> skills = skillsRepository.findAll(Sort.by(Direction.ASC, sort));
+        return skillMapper.toDto(skills);
     }
 
     @Override
@@ -132,9 +114,13 @@ public class AboutServiceImpl implements AboutService {
     }
 
     @Override
-    public List<SkillDto> getSortedSkills(String sort) {
-        List<Skill> skills = skillsRepository.findAll(Sort.by(Direction.ASC, sort));
-        return skillMapper.toDto(skills);
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public boolean deleteSkillsById(long id) {
+        boolean res = skillsRepository.existsSkillById(id);
+        if (res) {
+            skillsRepository.deleteById(id);
+        }
+        return res;
     }
 
 }

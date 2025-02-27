@@ -38,7 +38,7 @@ public class CompaniesController {
     }
 
     @GetMapping({"/companies/sort"})
-    public String sortedCompanies(
+    public String getSortedCompanies(
             Model model,
             @RequestParam String sort
     ) {

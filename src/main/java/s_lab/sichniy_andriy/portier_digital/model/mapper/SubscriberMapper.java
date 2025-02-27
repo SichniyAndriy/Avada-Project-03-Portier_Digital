@@ -11,7 +11,8 @@ import org.mapstruct.ReportingPolicy;
 import s_lab.sichniy_andriy.portier_digital.model.Subscriber;
 import s_lab.sichniy_andriy.portier_digital.model.dto.SubscriberDto;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = ComponentModel.SPRING)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE,
+        componentModel = ComponentModel.SPRING)
 public interface SubscriberMapper {
 
     Subscriber toEntity(SubscriberDto subscriberDto);

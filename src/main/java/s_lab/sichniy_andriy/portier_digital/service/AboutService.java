@@ -19,12 +19,6 @@ public interface AboutService {
 
     List<ContactDto> getAllContacts();
 
-    List<ContactDto> getSortedContacts(String sort);
-
-    ContactDto saveContact(ContactDto contactDto);
-
-    boolean deleteContactById(long id);
-
     //===============================================================\\
     List<SkillDto> getAllSkills();
 
