@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 .~*
+src/main/resources/node_modules
+src/main/resources/static/pages
+htmlReport
 
 ### STS ###
 .apt_generated
@@ -29,10 +32,3 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
-### VS Code ###
-.vscode/
-
-###  ###
-/src/main/resources/node_modules/*
-/src/main/resources/static/pages/*
