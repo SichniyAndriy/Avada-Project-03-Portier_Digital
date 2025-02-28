@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    name: Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -23,11 +24,21 @@ jobs:
         run: mvn test
 
   build:
+    name: Lint and Build
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+      - name: Linter
+        uses: super-linter/super-linter@v7.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup Java JDK
         uses: actions/setup-java@v4
         with:
