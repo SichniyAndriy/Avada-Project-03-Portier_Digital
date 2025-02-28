@@ -64,6 +64,8 @@ class AboutServiceImplTest {
     @AfterEach
     void tearDown() {
         companies.clear();
+        contacts.clear();
+        skills.clear();
     }
 
     @Test @DisplayName("Test getAllCompanies")
