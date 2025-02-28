@@ -17,6 +17,6 @@ jobs:
             distribution: 'oracle' # See 'Supported distributions' for available options
             java-version: '17'
             cache: 'maven'
-            cache-dependency-path: "sub-project/pom.xml" # optional
+            cache-dependency-path: "pom.xml" # optional
         - name: Test with Maven
           run: mvn test
