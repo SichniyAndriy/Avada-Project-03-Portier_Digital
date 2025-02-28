@@ -109,7 +109,8 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public long saveSubscriber(SubscriberDto subscriberDto) {
         Subscriber subscriber = subscriberMapper.toEntity(subscriberDto);
-         return subscribersRepository.save(subscriber).getId();
+        Subscriber saved = subscribersRepository.save(subscriber);
+        return saved.getId();
     }
 
     @Override
