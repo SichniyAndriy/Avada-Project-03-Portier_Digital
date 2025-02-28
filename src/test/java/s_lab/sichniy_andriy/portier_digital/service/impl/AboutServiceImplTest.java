@@ -264,13 +264,13 @@ class AboutServiceImplTest {
     Iterable<DynamicTest> deleteSkillsById() {
         return List.of(
                 DynamicTest.dynamicTest( "With existed record. Ok", () -> {
-                    Mockito.when(skillsRepository.existsSkillById(Mockito.anyLong())).thenReturn(true);
-                    Assertions.assertTrue(aboutService.deleteSkillsById(1L));
+                    Mockito.when(skillsRepository.existsById(Mockito.anyLong())).thenReturn(true);
+                    Assertions.assertTrue(aboutService.deleteSkillById(1L));
                     Mockito.verify(skillsRepository, Mockito.times(1)).deleteById(Mockito.anyLong());
                 }),
                 DynamicTest.dynamicTest( "With not existed record. NotOk", () -> {
-                    Mockito.when(skillsRepository.existsSkillById(Mockito.anyLong())).thenReturn(false);
-                    Assertions.assertFalse(aboutService.deleteSkillsById(0L));
+                    Mockito.when(skillsRepository.existsById(Mockito.anyLong())).thenReturn(false);
+                    Assertions.assertFalse(aboutService.deleteSkillById(0L));
                     Mockito.verify(skillsRepository, Mockito.times(1)).deleteById(Mockito.anyLong());
                 })
         );

@@ -115,8 +115,8 @@ public class AboutServiceImpl implements AboutService {
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public boolean deleteSkillsById(long id) {
-        boolean res = skillsRepository.existsSkillById(id);
+    public boolean deleteSkillById(long id) {
+        boolean res = skillsRepository.existsById(id);
         if (res) {
             skillsRepository.deleteById(id);
         }

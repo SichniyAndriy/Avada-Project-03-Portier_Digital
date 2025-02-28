@@ -38,6 +38,7 @@ public class SkillsController {
         return modelAndView;
     }
 
+    @SuppressWarnings("SpringMVCViewInspection")
     @GetMapping({"/skills/sort"})
     public String sortedSkills(
             Model model,
@@ -52,7 +53,7 @@ public class SkillsController {
     public ResponseEntity<HttpStatus> deleteSkill(
             @PathVariable long id
     ) {
-        boolean res = aboutService.deleteSkillsById(id);
+        boolean res = aboutService.deleteSkillById(id);
         return ResponseEntity.status(res ? HttpStatus.OK : HttpStatus.NOT_FOUND).build();
     }
 

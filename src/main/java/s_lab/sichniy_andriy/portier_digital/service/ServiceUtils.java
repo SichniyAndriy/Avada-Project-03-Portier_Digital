@@ -54,6 +54,7 @@ public class ServiceUtils {
         return "/" + IMAGES_FOLDER + "/" + folder + "/" + file.getOriginalFilename();
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private static File checkDir(String folder) {
         String PATH_TO_FOLDER = SERVER_PATH + "/" + IMAGES_FOLDER + "/" + folder;
         File dest = new File(PATH_TO_FOLDER);
@@ -75,4 +76,5 @@ public class ServiceUtils {
         graphics2D.dispose();
         System.out.println(ImageIO.write(newImage, ext, new File(fullPath + "." + ext)));
     }
+
 }

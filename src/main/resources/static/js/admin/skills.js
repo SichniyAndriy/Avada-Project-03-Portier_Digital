@@ -9,7 +9,7 @@ document.addEventListener( "DOMContentLoaded", function () {
 } );
 
 async function addListenerToEditBtns() {
-    const editBtns = document.querySelectorAll( "[id^='edit__btn'" );
+    const editBtns = document.querySelectorAll( "[id^='edit__btn']" );
     for ( const btn of editBtns ) {
         btn.addEventListener( "click", function () {
             const rowElems = btn.closest( "tr" ).children;
@@ -35,7 +35,7 @@ async function addListenerToDeleteBtns() {
                 } )
                 .catch( error => console.error( error.message ) );
         } );
-    };
+    }
 }
 
 async function addListenerToCloseBtns() {

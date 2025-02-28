@@ -62,4 +62,5 @@ public class CompaniesController {
         CompanyDto newCompanyDto = aboutService.saveCompany(companyDto);
         return ResponseEntity.ok(newCompanyDto);
     }
+
 }
