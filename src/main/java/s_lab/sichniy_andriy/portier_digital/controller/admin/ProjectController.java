@@ -78,7 +78,6 @@ public class ProjectController {
     @PostMapping("/projects/image/save")
     public ResponseEntity<String> saveProjectImage(
             @RequestParam MultipartFile file,
-            @RequestParam String timestamp,
             @RequestParam String ext
     ) throws IOException {
         String res = ServiceUtils.saveImages(file, ext, "projects");

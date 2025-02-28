@@ -26,6 +26,6 @@ public interface AboutService {
 
     SkillDto saveSkill(SkillDto skillDto);
 
-    boolean deleteSkillsById(long id);
+    boolean deleteSkillById(long id);
 
 }

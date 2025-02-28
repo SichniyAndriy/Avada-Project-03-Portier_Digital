@@ -2,29 +2,28 @@ package s_lab.sichniy_andriy.portier_digital.repository;
 
 import java.util.List;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.lang.NonNull;
 import s_lab.sichniy_andriy.portier_digital.model.Article;
 
 public interface ArticlesRepository extends JpaRepository<Article, Long>, JpaSpecificationExecutor<Article> {
 
-    @Override
-    List<Article> findAll(Sort sort);
+    @Override @NonNull
+    List<Article> findAll(@NonNull Sort sort);
 
-    Page<Article> findAll(Pageable pageable);
+    @NonNull
+    Page<Article> findAll( @NonNull Pageable pageable);
 
     long count();
 
-    List<Article> findAllBy(PageRequest pageRequest);
+    boolean existsById(@NonNull Long id);
 
-    boolean existsById(Long id);
+    void deleteById(@NonNull Long id);
 
-    void deleteById(Long id);
-
-    @Override
-    <S extends Article> S save(S entity);
+    @Override @NonNull
+    <S extends Article> S save(@NonNull S entity);
 
 }

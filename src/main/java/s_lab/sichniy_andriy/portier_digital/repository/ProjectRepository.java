@@ -7,24 +7,26 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.lang.NonNull;
 import s_lab.sichniy_andriy.portier_digital.model.Project;
 
 public interface ProjectRepository extends JpaRepository<Project, Long>, JpaSpecificationExecutor<Project> {
 
-    @Override
-    List<Project> findAll(Sort sort);
+    @Override @NonNull
+    List<Project> findAll(@NonNull Sort sort);
 
-    Page<Project> findAll(Pageable pageable);
+ @NonNull
+    Page<Project> findAll(@NonNull Pageable pageable);
 
     long count();
 
     List<Project> findAllBy(PageRequest pageRequest);
 
-    boolean existsById(Long id);
+    boolean existsById(@NonNull Long id);
 
-    void deleteById(Long id);
+    void deleteById(@NonNull Long id);
 
-    @Override
-    <S extends Project> S save(S entity);
+    @Override @NonNull
+    <S extends Project> S save(@NonNull S entity);
 
 }

@@ -5,23 +5,25 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.lang.NonNull;
 import s_lab.sichniy_andriy.portier_digital.model.Company;
 
 
 public interface CompaniesRepository extends JpaRepository<Company, Long> {
 
-    @Override
-    List<Company> findAll(Sort sort);
+    @Override @NonNull
+    List<Company> findAll(@NonNull Sort sort);
 
-    Page<Company> findAll(Pageable pageable);
+    @NonNull
+    Page<Company> findAll(@NonNull Pageable pageable);
 
-    @Override
-    <S extends Company> S saveAndFlush(S entity);
-
-    @Override
-    boolean existsById(Long aLong);
+    @Override @NonNull
+    <S extends Company> S saveAndFlush(@NonNull S entity);
 
     @Override
-    void deleteById(Long aLong);
+    boolean existsById(@NonNull Long aLong);
+
+    @Override
+    void deleteById(@NonNull Long aLong);
 
 }
