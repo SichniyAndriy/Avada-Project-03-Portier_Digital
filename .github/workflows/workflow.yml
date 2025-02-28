@@ -1,4 +1,4 @@
-name: GitHub Actions Workflow
+name: Portier Digital Workflows
 run-name: ${{ github.actor }} is testing out GitHub Actions
 
 on:
@@ -10,14 +10,35 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-        - name: Check out repository code
-          uses: actions/checkout@v4
-        - name: Setup Java JDK
-          uses: actions/setup-java@v4
-          with:
-            distribution: 'oracle' # See 'Supported distributions' for available options
-            java-version: '17'
-            cache: 'maven'
-            cache-dependency-path: "pom.xml" # optional
-        - name: Test with Maven
-          run: mvn test
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle' # See 'Supported distributions' for available options
+          java-version: '17'
+          cache: 'maven'
+          cache-dependency-path: "pom.xml" # optional
+      - name: Test with Maven
+        run: mvn test
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: portier-digital
+          path: target/*.war
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle' # See 'Supported distributions' for available options
+          java-version: '17'
+          cache: 'maven'
+          cache-dependency-path: "pom.xml" # optional
+      - name: Maven builds
+        run: mvn clean package
