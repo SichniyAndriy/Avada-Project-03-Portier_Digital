@@ -7,6 +7,7 @@ spring:
     resources:
       static-locations: classpath:/static/, 
         file:/apache-tomcat-11.0.4/webapps/resources/portier-digital/,
+        file:/usr/local/tomcat/webapps/resources/portier-digital
         file:/home/slj/web/slj.demodev.cc/public_html/
   application:
     name: PortierDigital
@@ -16,14 +17,14 @@ spring:
       enabled: true
     restart:
       enabled: true
-      additional-exclude: static/images
+      additional-exclude: static/images, static/archs
       poll-interval: 1000ms
       quiet-period: 200ms
   datasource:
-    username: slj_kinocms
-    password: 4h8bLzSDig
-    url: jdbc:mysql://localhost:3306/slj_kinocms2
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: admin
+    password: password
+    url: jdbc:postgresql://db:5432/portier_digital
+    driver-class-name: org.postgresql.Driver
     hikari:
       minimum-idle: 10
       maximum-pool-size: 100
@@ -38,4 +39,4 @@ spring:
       ddl-auto: create
     show-sql: true
     open-in-view: false
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
