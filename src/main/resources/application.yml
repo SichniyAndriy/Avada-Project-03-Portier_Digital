@@ -6,7 +6,7 @@ spring:
   web:
     resources:
       static-locations: classpath:/static/, 
-        file:/apache-tomcat-10.1.34/webapps/,
+        file:/apache-tomcat-11.0.4/webapps/resources/portier-digital/,
         file:/home/slj/web/slj.demodev.cc/public_html/
   application:
     name: PortierDigital
