@@ -51,7 +51,7 @@ jobs:
         with:
           image: andropcolo/portier_digital
           tags: latest
-          registry: registry-url.io
+          registry: https://hub.docker.com/u/andropcolo
           dockerfile: Dockerfile.ci
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
