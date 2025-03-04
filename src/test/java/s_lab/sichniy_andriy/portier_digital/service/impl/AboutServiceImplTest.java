@@ -31,7 +31,7 @@ import s_lab.sichniy_andriy.portier_digital.repository.SkillsRepository;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Testing AboutServiceImpl class")
-class AboutServiceImplTest {
+public class AboutServiceImplTest {
 
     private AboutServiceImpl aboutService;
 
@@ -46,7 +46,7 @@ class AboutServiceImplTest {
 
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         initCompanies();
         initContacts();
         initSkills();
@@ -62,14 +62,14 @@ class AboutServiceImplTest {
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         companies.clear();
         contacts.clear();
         skills.clear();
     }
 
     @Test @DisplayName("Test getAllCompanies")
-    void test_getAllCompanies_Ok() {
+    public void test_getAllCompanies_Ok() {
         Mockito.when(companiesRepository.findAll(Mockito.any(Sort.class))).thenReturn(companies);
         List<CompanyDto> companyDtos = aboutService.getAllCompanies();
         Assertions.assertNotNull(companyDtos);
@@ -79,8 +79,9 @@ class AboutServiceImplTest {
         Mockito.verify(companiesRepository, Mockito.times(1)).findAll(Mockito.any(Sort.class));
     }
 
-    @TestFactory @DisplayName("Test getSortedCompanies")
-    Iterable<DynamicTest> getSortedCompanies() {
+    @TestFactory
+    @DisplayName("Test getSortedCompanies")
+    public Iterable<DynamicTest> getSortedCompanies() {
         return List.of(
                 DynamicTest.dynamicTest("Sorting by Id. Ok", () -> {
                     Mockito.when(companiesRepository.findAll(Mockito.any(Sort.class ))).thenReturn(companies);
@@ -121,7 +122,7 @@ class AboutServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test saveCompany")
-    Iterable<DynamicTest> testSaveCompany() {
+    public Iterable<DynamicTest> testSaveCompany() {
         return List.of(
                 DynamicTest.dynamicTest("Save Company With Wright Parameter. Ok", () -> {
                     Mockito.when(companiesRepository.saveAndFlush(Mockito.any(Company.class))).thenReturn(companies.get(0));
@@ -144,7 +145,7 @@ class AboutServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test deleteCompanyById")
-    Iterable<DynamicTest> test_deleteCompanyById() {
+    public Iterable<DynamicTest> test_deleteCompanyById() {
         return List.of(
                 DynamicTest.dynamicTest("Exist company. Ok", () -> {
                     Mockito.when(companiesRepository.existsById(Mockito.anyLong())).thenReturn(true);
@@ -160,7 +161,7 @@ class AboutServiceImplTest {
     }
 
     @Test @DisplayName("Not implemented yet")
-    void getAllContacts() {
+    public void getAllContacts() {
         Mockito.when(contactsRepository.findAll(Mockito.any(Sort.class))).thenReturn(contacts);
         List<ContactDto> contactDtos = aboutService.getAllContacts();
         Assertions.assertAll(
@@ -175,7 +176,7 @@ class AboutServiceImplTest {
     }
 
     @Test @DisplayName("Test getAllSkills")
-    void getAllSkills() {
+    public void getAllSkills() {
         Mockito.when(skillsRepository.findAll(Mockito.any(Sort.class))).thenReturn(skills);
         List<SkillDto> skillDtos = aboutService.getAllSkills();
         Assertions.assertAll(
@@ -190,7 +191,7 @@ class AboutServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test getSortedSkills")
-    Iterable<DynamicTest> getSortedSkills() {
+    public Iterable<DynamicTest> getSortedSkills() {
         return List.of(
                 DynamicTest.dynamicTest( "Sort By Id. Ok", () -> {
                     Mockito.when(skillsRepository.findAll(Mockito.any(Sort.class))).thenReturn(skills);
@@ -234,7 +235,7 @@ class AboutServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test saveSkill")
-    Iterable<DynamicTest> saveSkill() {
+    public Iterable<DynamicTest> saveSkill() {
         return List.of(
                 DynamicTest.dynamicTest( "With wright parameter. Ok", () -> {
                     Mockito.when(skillsRepository.saveAndFlush(Mockito.any(Skill.class))).thenReturn(skills.get(0));
@@ -257,11 +258,10 @@ class AboutServiceImplTest {
                     Mockito.verify(skillsRepository, Mockito.times(2)).saveAndFlush(Mockito.any());
                 })
         );
-
     }
 
     @TestFactory @DisplayName("Test deleteSkills")
-    Iterable<DynamicTest> deleteSkillsById() {
+    public Iterable<DynamicTest> deleteSkillsById() {
         return List.of(
                 DynamicTest.dynamicTest( "With existed record. Ok", () -> {
                     Mockito.when(skillsRepository.existsById(Mockito.anyLong())).thenReturn(true);

@@ -32,7 +32,7 @@ import s_lab.sichniy_andriy.portier_digital.repository.ArticlesRepository;
 import s_lab.sichniy_andriy.portier_digital.repository.SubscribersRepository;
 
 @ExtendWith(MockitoExtension.class)
-class BlogServiceImplTest {
+public class BlogServiceImplTest {
 
     private BlogServiceImpl blogService;
 
@@ -46,7 +46,7 @@ class BlogServiceImplTest {
 
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         initArticles();
         initSubscribers();
         blogService = new BlogServiceImpl(
@@ -58,13 +58,13 @@ class BlogServiceImplTest {
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         subscribers.clear();
         articles.clear();
     }
 
     @Test @DisplayName("Test getAllArticles. Ok")
-    void getAllArticles() {
+    public void getAllArticles() {
         Mockito.when(articlesRepository.findAll(Mockito.any(Sort.class))).thenReturn(articles);
         List<ArticleDto> articleDtos = blogService.getAllArticles();
         MatcherAssert.assertThat(articleDtos, Matchers.hasSize(articles.size()));
@@ -81,7 +81,7 @@ class BlogServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test getArticlePage")
-    Iterable<DynamicTest> getArticlePage() {
+    public Iterable<DynamicTest> getArticlePage() {
         return List.of(
                 DynamicTest.dynamicTest("With wright parameters 5 elems", () -> {
                     Mockito.when(articlesRepository.count()).thenReturn((long) ARRAY_SIZE);
@@ -129,7 +129,7 @@ class BlogServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test getArticleById")
-    Iterable<DynamicTest> getArticleById() {
+    public Iterable<DynamicTest> getArticleById() {
         return List.of(
                 DynamicTest.dynamicTest("With wright parameter id 1", () -> {
                     Mockito.when(articlesRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(articles.get(0)));
@@ -152,7 +152,7 @@ class BlogServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test saveArticle")
-    Iterable<DynamicTest> saveArticle() {
+    public Iterable<DynamicTest> saveArticle() {
         return List.of(
                 DynamicTest.dynamicTest("With wright parameter", () -> {
                     Mockito.when(articlesRepository.save(Mockito.any(Article.class))).thenReturn(articles.get(0));
@@ -175,7 +175,7 @@ class BlogServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test deleteArticle")
-    Iterable<DynamicTest> deleteArticle() {
+    public Iterable<DynamicTest> deleteArticle() {
         return List.of(
                 DynamicTest.dynamicTest("With wright parameter id", () -> {
                     Mockito.when(articlesRepository.existsById(Mockito.anyLong())).thenReturn(true);
@@ -194,7 +194,7 @@ class BlogServiceImplTest {
     }
 
     @Test @DisplayName("Test getAllSubscribers")
-    void getAllSubscribers() {
+    public void getAllSubscribers() {
         Mockito.when(subscribersRepository.findAll(Mockito.any(Sort.class))).thenReturn(subscribers);
         List<SubscriberDto> subscriberDtoList = blogService.getAllSubscribers();
         MatcherAssert.assertThat(subscriberDtoList, Matchers.notNullValue());
@@ -204,7 +204,7 @@ class BlogServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test getSubscriberPage")
-    Iterable<DynamicTest> getSubscriberPage() {
+    public Iterable<DynamicTest> getSubscriberPage() {
         return List.of(
                 DynamicTest.dynamicTest("With wright parameters 5 elems", () -> {
                     Mockito.when(subscribersRepository.count()).thenReturn((long) ARRAY_SIZE);
@@ -252,7 +252,7 @@ class BlogServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test saveSubscriber")
-    Iterable<DynamicTest> saveSubscriber() {
+    public Iterable<DynamicTest> saveSubscriber() {
         return List.of(
                 DynamicTest.dynamicTest("With wright parameter", () -> {
                     Mockito.when(subscribersRepository.save(Mockito.any(Subscriber.class))).thenReturn(subscribers.get(0));
@@ -272,7 +272,7 @@ class BlogServiceImplTest {
     }
 
     @TestFactory @DisplayName("Test deleteSubscriber")
-    Iterable<DynamicTest> deleteSubscriber() {
+    public Iterable<DynamicTest> deleteSubscriber() {
         return List.of(
                 DynamicTest.dynamicTest("With wright parameter id", () -> {
                     Mockito.when(subscribersRepository.existsById(Mockito.anyLong())).thenReturn(true);
