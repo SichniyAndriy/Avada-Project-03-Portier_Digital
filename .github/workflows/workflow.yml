@@ -72,6 +72,7 @@ jobs:
           username: ${{ secrets.SPACELAB_USER }}
           key: ${{ secrets.SPACELAB_SSH_PR_KEY }}
           script: | 
+            echo "I\'m working..."
             whoami
             cd ~/web/slj.demodev.cc/public_html/compose
-            docker compose up -d --build
+            docker compose up
