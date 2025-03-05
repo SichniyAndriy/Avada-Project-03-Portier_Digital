@@ -68,6 +68,7 @@ jobs:
         uses: appleboy/ssh-action@v1.2.1
         with:
           host: ${{ secrets.SPACELAB_HOST }}
+          port: '22'
           username: ${{ secrets.SPACELAB_USER }}
           key: ${{ secrets.SPACELAB_SSH_PR_KEY }}
           script: | 
