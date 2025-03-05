@@ -4,7 +4,7 @@ name: pd-app
 services:
   db:
     container_name: postgres
-    image: postgres:latest
+    image: andropcolo/postgres:latest
     networks:
       app-net:
     ports:
@@ -18,11 +18,13 @@ services:
     container_name: portier-digital
     depends_on:
       - db
-    image: portier-digital
+    image: andropcolo/portier-digital:latest
     networks:
       app-net:
     ports:
       - "8088:8080"
+    volumes:
+      - /home/slj/web/slj.demodev.cc/public_html/resources/portier-digital/:/usr/local/tomcat/webapps/resources/
 
 
 networks:
