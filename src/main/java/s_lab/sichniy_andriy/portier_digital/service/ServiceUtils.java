@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ServiceUtils {
 
-    private final static String SERVER_PATH = "/apache-tomcat-11.0.4/webapps/resources/portier-digital";
+    private final static String SERVER_PATH = "/usr/local/tomcat/webapps/resources";
     private final static String IMAGES_FOLDER = "images";
 
 
