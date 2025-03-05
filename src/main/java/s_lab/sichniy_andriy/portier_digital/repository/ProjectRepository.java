@@ -15,7 +15,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, JpaSpec
     @Override @NonNull
     List<Project> findAll(@NonNull Sort sort);
 
- @NonNull
+    @NonNull
     Page<Project> findAll(@NonNull Pageable pageable);
 
     long count();
