@@ -75,4 +75,4 @@ jobs:
             echo "I\'m working..."
             whoami
             cd ~/web/slj.demodev.cc/public_html/compose
-            docker compose up --force-recreate
+            docker compose up -d --force-recreate
