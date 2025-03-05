@@ -1,0 +1,13 @@
+.table {
+  table-layout: fixed;
+}
+.table tbody tr td {
+  max-height: 32px;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*# sourceMappingURL=projects.css.map */
