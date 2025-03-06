@@ -3,7 +3,7 @@ name: PortierDigital
 
 services:
   db:
-    container_name: postgres-pd
+    container_name: postgres-pd-sich
     image: postgres:17-alpine3.21
     networks:
       app-net:
@@ -15,7 +15,7 @@ services:
       POSTGRES_PASSWORD: "password"
 
   app:
-    container_name: portier-digital
+    container_name: portier-digital-sich
     depends_on:
       - db
     image: andropcolo/portier-digital:latest

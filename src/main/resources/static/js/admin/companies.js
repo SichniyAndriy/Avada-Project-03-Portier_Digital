@@ -1,5 +1,3 @@
-/* global document axios location console $ FormData Event*/
-
 document.addEventListener( "DOMContentLoaded", function () {
     addListenerToEditBtns();
     addListenerToDeleteBtns();

@@ -1,4 +1,3 @@
-/*global location document fetch console URL*/
 const PREFIX_URL = "PortierDigital-SichniyA";
 
 document.addEventListener( "DOMContentLoaded", function () {
@@ -22,7 +21,6 @@ document.addEventListener( "DOMContentLoaded", function () {
                 URL.revokeObjectURL( url );
             } )
             .catch( err => console.error( err.message ) );
-
     } );
 
 
