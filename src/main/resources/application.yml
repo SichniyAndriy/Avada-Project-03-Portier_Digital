@@ -26,11 +26,13 @@ spring:
     hikari:
       minimum-idle: 10
       maximum-pool-size: 100
-      data-source-properties:
-        useServerPrepStmts: true
-        cachePrepStmts: true
-        metadataCacheLimit: 1
       leak-detection-threshold: 5000
+      data-source-properties:
+        cachePrepStmts: true
+        useServerPrepStmts: true
+        metadataCacheLimit: 1
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
   jpa:
     hibernate:
       ddl-auto: create

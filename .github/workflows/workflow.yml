@@ -59,13 +59,7 @@ jobs:
           context: .
           push: true
           tags: andropcolo/portier-digital:latest
-      - name: Build and push postgres-db
-        uses: docker/build-push-action@v6
-        with:
-          file: ./dockerfile/db/Dockerfile
-          context: .
-          push: true
-          tags: andropcolo/postgres-pd:latest
+
 
   recreate:
     name: Remote ssh command
@@ -87,3 +81,4 @@ jobs:
             docker compose pull
             echo "Recreate app containers"
             docker compose up -d --force-recreate
+            docker image prune -f

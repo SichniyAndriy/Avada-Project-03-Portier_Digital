@@ -1,10 +1,10 @@
-name: PortierDigital
+name: PortierDigital-Windows
 
 
 services:
   db:
     container_name: postgres-pd-sich
-    image: postgres-pd:latest
+    image: postgres:17-alpine3.21
     restart: always
     networks:
       - pd-net
@@ -22,7 +22,7 @@ services:
     networks:
       - pd-net
     ports:
-      - "8088:8080"
+      - "8080:8080"
     volumes:
       - c:\\home\\slj\\web\\slj.demodev.cc\\public_html\\resources\\portier-digital:/usr/local/tomcat/webapps/resources
 
