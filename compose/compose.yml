@@ -4,11 +4,11 @@ name: PortierDigital
 services:
   db:
     container_name: postgres-pd
-    image: postgres:latest
+    image: postgres:17-alpine3.21
     networks:
       app-net:
     ports:
-      - "54045:5432"
+      - "5445:5432"
     environment:
       POSTGRES_DB: "portier_digital"
       POSTGRES_USER: "admin"
