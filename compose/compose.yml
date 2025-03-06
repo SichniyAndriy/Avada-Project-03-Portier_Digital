@@ -9,7 +9,7 @@ services:
     networks:
       - pd-net
     ports:
-      - "5445:5432"
+      - "5445:5445"
     environment:
       POSTGRES_DB: "portier_digital"
       POSTGRES_USER: "admin"

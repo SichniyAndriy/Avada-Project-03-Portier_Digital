@@ -4,4 +4,4 @@ FROM postgres:17-alpine3.21
 
 LABEL authors="AndriySichniy"
 
-EXPOSE 5432
+EXPOSE 5445
