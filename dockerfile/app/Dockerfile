@@ -7,6 +7,4 @@ COPY ./target/PortierDigital-SichniyA.war \
      /usr/local/tomcat/webapps/PortierDigital-SichniyA.war
 COPY ./dockerfile/app/context.xml /usr/local/tomcat/conf/context.xml
 
-EXPOSE 8088
-
 ENTRYPOINT ["catalina.sh", "run"]

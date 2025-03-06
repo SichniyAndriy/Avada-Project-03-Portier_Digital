@@ -8,8 +8,6 @@ services:
     restart: always
     networks:
       - pd-net
-    ports:
-      - "5445:5445"
     environment:
       POSTGRES_DB: "portier_digital"
       POSTGRES_USER: "admin"
