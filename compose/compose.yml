@@ -8,7 +8,7 @@ services:
     networks:
       app-net:
     ports:
-      - "5445:5432"
+      - "54045:5432"
     environment:
       POSTGRES_DB: "portier_digital"
       POSTGRES_USER: "admin"

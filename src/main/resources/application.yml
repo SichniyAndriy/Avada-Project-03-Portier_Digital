@@ -21,7 +21,7 @@ spring:
   datasource:
     username: admin
     password: password
-    url: jdbc:postgresql://db:5445/portier_digital
+    url: jdbc:postgresql://db:54045/portier_digital
     driver-class-name: org.postgresql.Driver
     hikari:
       minimum-idle: 10
