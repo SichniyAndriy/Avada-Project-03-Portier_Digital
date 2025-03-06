@@ -52,10 +52,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push
+      - name: Build and push portier-digital
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./dockerfile/app/
           push: true
           tags: andropcolo/portier-digital:latest
 
@@ -77,5 +77,5 @@ jobs:
             cd ~/web/slj.demodev.cc/public_html/compose
             echo "Pull updated image from hub"
             docker pull andropcolo/portier-digital
-            echo "Recreate app container"
+            echo "Recreate app containers"
             docker compose up -d --force-recreate

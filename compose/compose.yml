@@ -1,10 +1,10 @@
-name: pd-app
+name: PortierDigital
 
 
 services:
   db:
-    container_name: postgres
-    image: andropcolo/postgres:latest
+    container_name: postgres-pd
+    image: postgres:latest
     networks:
       app-net:
     ports:
