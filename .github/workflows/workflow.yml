@@ -78,4 +78,4 @@ jobs:
             echo "Pull updated image from hub"
             docker pull andropcolo/portier-digital
             echo "Recreate app container"
-            docker compose up -d --force-recreate app
+            docker compose up -d --force-recreate
