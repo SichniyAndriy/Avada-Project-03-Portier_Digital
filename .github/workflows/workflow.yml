@@ -77,6 +77,6 @@ jobs:
             echo "Go to compose directory"
             cd ~/web/slj.demodev.cc/public_html/compose
             echo "Pull updated image from hub"
-            docker pull andropcolo/portier-digital
+            docker compose pull
             echo "Recreate app containers"
-            docker compose up -d --force-recreate
+            docker compose up -d
