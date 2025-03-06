@@ -55,7 +55,7 @@ jobs:
       - name: Build and push portier-digital
         uses: docker/build-push-action@v6
         with:
-          file: ./dockerfile/app
+          file: ./dockerfile/app/Dockerfile
           context: .
           push: true
           tags: andropcolo/portier-digital:latest
