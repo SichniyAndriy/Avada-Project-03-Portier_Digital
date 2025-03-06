@@ -7,7 +7,7 @@ VOLUME ["/usr/local/tomcat/webapps/resources/"]
 
 COPY ./target/PortierDigital-SichniyA.war \
      /usr/local/tomcat/webapps/PortierDigital-SichniyA.war
-COPY ../../context.xml /usr/local/tomcat/conf/context.xml
+COPY ./dockerfile/app/context.xml /usr/local/tomcat/conf/context.xml
 
 EXPOSE 8088
 
