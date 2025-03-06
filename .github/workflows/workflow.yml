@@ -79,4 +79,4 @@ jobs:
             echo "Pull updated image from hub"
             docker compose pull
             echo "Recreate app containers"
-            docker compose up -d
+            docker compose up -d --force-recreate

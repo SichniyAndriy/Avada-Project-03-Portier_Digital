@@ -13,7 +13,6 @@ services:
       POSTGRES_DB: "portier_digital"
       POSTGRES_USER: "admin"
       POSTGRES_PASSWORD: "password"
-      POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=ua-UA"
 
   app:
     container_name: portier-digital-sich
