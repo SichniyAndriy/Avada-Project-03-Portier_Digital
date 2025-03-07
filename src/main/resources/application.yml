@@ -5,8 +5,7 @@ spring:
       max-request-size: 10MB
   web:
     resources:
-      static-locations: classpath:/static/, 
-        file:/usr/local/tomcat/webapps/resources/
+      static-locations: classpath:/static/, file:/usr/local/tomcat/webapps/resources/
   application:
     name: PortierDigital
   devtools:
@@ -16,8 +15,8 @@ spring:
     restart:
       enabled: true
       additional-exclude: static/images, static/archs
-      poll-interval: 1000ms
-      quiet-period: 200ms
+      poll-interval: 150ms
+      quiet-period: 100ms
   datasource:
     username: admin
     password: password
@@ -33,6 +32,7 @@ spring:
         metadataCacheLimit: 1
         prepStmtCacheSize: 250
         prepStmtCacheSqlLimit: 2048
+      transaction-isolation: TRANSACTION_REPEATABLE_READ
   jpa:
     hibernate:
       ddl-auto: create

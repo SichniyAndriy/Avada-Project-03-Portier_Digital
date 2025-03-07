@@ -26,9 +26,9 @@
           </div>
           <div class="tips__inner--mail">
             <form>
-              <input class="email__holder" type="email" id="email" name="email" placeholder="Your email address"
-                required />
-              <button class="subcribe" type="submit">Subcribe</button>
+              <input class="email__holder" type="email" id="email" name="email" placeholder=" Your email address"
+                pattern="^[a-zA-Z_][\w\d]*@[a-zA-Z]{2,4}$" required />
+              <button id="subcribe__btn" class="subcribe" type="submit">Subcribe</button>
             </form>
           </div>
         </div>
@@ -298,6 +298,7 @@
   </footer>
 
   <script th:src="@{/js/main.js}"></script>
+  <script th:src="@{/js/blog.js}"></script>
 
 </body>
 

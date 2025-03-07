@@ -1,6 +1,5 @@
 /*global document console alert location axios $ confirm event Event DOMParser FormData*/
 
-
 document.addEventListener( "DOMContentLoaded", function () {
     addListenersToDeleteBtns();
     addListenerToSaveFormBtn();
@@ -8,7 +7,6 @@ document.addEventListener( "DOMContentLoaded", function () {
     addListenerToSizeSelect();
     addListenerToSortSelect();
 } );
-
 
 async function addListenersToDeleteBtns() {
     const deleteBtns = document.querySelectorAll( "[id^='delete__btn']" );
@@ -18,7 +16,8 @@ async function addListenersToDeleteBtns() {
             const idTxt = tableRow.textContent.trim();
             const id = parseInt( idTxt );
             if ( confirm( "Ви впевнені що хочете видалити інформацію про проект" ) ) {
-                axios.delete( `${ location.href }/delete/${ id }` )
+                axios
+                    .delete( `${ location.href }/delete/${ id }` )
                     .then( responce => {
                         console.log( responce.data );
                         $( tableRow ).fadeOut( 250, () => {
@@ -35,7 +34,8 @@ async function addListenerToSaveFormBtn() {
     document.getElementById( "save_changes__btn" ).addEventListener( "click", async function () {
         const form = document.getElementById( "subscriber__form" );
         const formData = new FormData( form );
-        axios.post( `${ location.href }/save`, formData )
+        axios
+            .post( `${ location.href }/save`, formData )
             .then( responce => {
                 console.log( "Id: " + responce.data );
                 console.log( "Дані збережено" );
@@ -46,34 +46,35 @@ async function addListenerToSaveFormBtn() {
 }
 
 async function addListenerToCloseModalBtns() {
-    document.getElementById( "close_modal__btn" ).addEventListener( "click", function () { clearForm(); } );
-    document.getElementById( "up_close_modal__btn" ).addEventListener( "click", function () { clearForm(); } );
+    document.getElementById( "close_modal__btn" ).addEventListener( "click", function () {
+        clearForm();
+    } );
+    document.getElementById( "up_close_modal__btn" ).addEventListener( "click", function () {
+        clearForm();
+    } );
 }
 
 async function addListenerToSizeSelect() {
-    document.getElementById( "size__select" ).addEventListener(
-        "change",
-        function ( event ) {
-            const page = document.querySelector( "#pagination li.active" ).textContent.trim();
-            const size = event.target.value;
-            const col = document.getElementById( "sort__select" ).value;
-            doPagination( page, size, col );
-        } );
+    document.getElementById( "size__select" ).addEventListener( "change", function ( event ) {
+        const page = document.querySelector( "#pagination li.active" ).textContent.trim();
+        const size = event.target.value;
+        const col = document.getElementById( "sort__select" ).value;
+        doPagination( page, size, col );
+    } );
 }
 
 async function addListenerToSortSelect() {
-    document.getElementById( "sort__select" ).addEventListener(
-        "change",
-        function ( event ) {
-            const page = document.querySelector( "#pagination li.active" ).textContent.trim();
-            const size = document.getElementById( "size__select" ).value;
-            const col = event.target.value;
-            doPagination( page, size, col );
-        } );
+    document.getElementById( "sort__select" ).addEventListener( "change", function ( event ) {
+        const page = document.querySelector( "#pagination li.active" ).textContent.trim();
+        const size = document.getElementById( "size__select" ).value;
+        const col = event.target.value;
+        doPagination( page, size, col );
+    } );
 }
 
 async function doPagination( page, size, col ) {
-    axios.get( `${ location.href }?page=${ page }&size=${ size }&col=${ col }` )
+    axios
+        .get( `${ location.href }?page=${ page }&size=${ size }&col=${ col }` )
         .then( responce => {
             console.log( `page=${ page }; size=${ size }; col=${ col };` );
             const newPage = new DOMParser().parseFromString( responce.data, "text/html" );

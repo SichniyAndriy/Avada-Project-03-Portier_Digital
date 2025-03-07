@@ -1,4 +1,4 @@
-package s_lab.sichniy_andriy.portier_digital.service;
+package s_lab.sichniy_andriy.portier_digital;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

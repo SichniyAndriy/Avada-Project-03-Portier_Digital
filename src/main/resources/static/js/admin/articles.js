@@ -1,6 +1,5 @@
-/*global document console alert location axios $ confirm event Event DOMParser FormData FileReader*/
 const EXT = "jpg";
-const PREFIX_URL = "/PortierDigital-SichniyA";
+const PREFIX_URL = "PortierDigital-SichniyA";
 
 
 document.addEventListener( "DOMContentLoaded", function () {
@@ -73,6 +72,7 @@ async function addListenerToSaveFormBtn() {
             .then( responce => {
                 console.log( "Id: " + responce.data );
                 console.log( "Дані збережено" );
+                sendEmails();
                 document.getElementById( "close_modal__btn" ).dispatchEvent( new Event( "click" ) );
             } )
             .catch( error => alert( error.message ) );
@@ -161,7 +161,6 @@ async function saveImageOnServer( file, imgName ) {
     }
 }
 
-// eslint-disable-next-line no-unused-vars
 function goToPage( page ) {
     const size = document.getElementById( "size__select" ).value;
     const col = document.getElementById( "sort__select" ).value;
@@ -175,4 +174,38 @@ function clearForm() {
     document.getElementById( "article_image__input" ).value = "";
     document.getElementById( "article_title" ).value = "";
     document.getElementById( "article_content" ).value = "";
+}
+
+async function sendEmails() {
+    const socketUrl = `ws://${ location.host }/${ PREFIX_URL }/websocket/emails`;
+    const webSocket = new WebSocket( socketUrl );
+    let emails;
+    let len;
+    webSocket.onopen = async () => {
+        const getAddress = `${ location.origin }/${ PREFIX_URL }/admin/emails`;
+        emails = ( await axios.get( `${ location.origin }/${ PREFIX_URL }/admin/emails` ) ).data;
+        len = emails.length;
+        webSocket.send( emails[ 0 ] );
+        console.log( "Socket send email" );
+    };
+
+    webSocket.onmessage = ( message ) => {
+        if ( len > 0 ) {
+            console.log( message.data );
+            webSocket.send( emails[ --len ] );
+        } else {
+            webSocket.close();
+            alert( "Підпісників повідомлено" );
+        }
+    };
+
+    webSocket.onclose = () => {
+        console.log( "Succes transfer session" );
+
+    };
+
+    webSocket.onerror = () => {
+        console.error( "Error transfer session" );
+    };
+
 }

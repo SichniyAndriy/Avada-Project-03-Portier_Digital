@@ -1,5 +1,4 @@
 @mixin fontIN() {
-    color: #FFF;
     font-family: Sora;
     font-size: 16px;
     font-style: normal;
@@ -13,10 +12,10 @@
     justify-content: center;
     align-items: center;
     margin-top: 120px;
+    color: aliceblue !important;
 
     .tips__inner--title {
         max-width: 830px;
-        color: #FFF;
         text-align: center;
         /* Hero */
         font-family: Sora;

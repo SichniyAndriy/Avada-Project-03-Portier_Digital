@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import s_lab.sichniy_andriy.portier_digital.model.dto.ProjectDto;
 import s_lab.sichniy_andriy.portier_digital.service.PortfolioService;
-import s_lab.sichniy_andriy.portier_digital.service.ServiceUtils;
+import s_lab.sichniy_andriy.portier_digital.ServiceUtils;
 
 
 @Controller

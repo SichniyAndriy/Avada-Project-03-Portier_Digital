@@ -1,6 +1,8 @@
+// @ts-nocheck
 const PREFIX_URL = "PortierDigital-SichniyA";
 
 document.addEventListener( "DOMContentLoaded", function () {
+    addeventToGetInTouchBtn();
     const linkBtn = document.getElementById( "link__btn" );
     linkBtn.addEventListener( "click", function () {
         fetch( `${ location.origin }/${ PREFIX_URL }/archs/portier-digital.zip` )
@@ -44,4 +46,9 @@ if ( iconMenu ) {
         }
     } );
 }
-
+async function addeventToGetInTouchBtn() {
+    const btn = document.querySelector( "section button.touch" );
+    btn.addEventListener( "click", function () {
+        alert( "!!!_COOOL_!!!" );
+    } );
+}

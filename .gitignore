@@ -8,7 +8,7 @@ src/main/resources/node_modules
 src/main/resources/static/pages
 htmlReport
 *.bkp
-dockerfile
+dockerfile/**
 
 ### STS ###
 .apt_generated

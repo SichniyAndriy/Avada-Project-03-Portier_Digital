@@ -3,7 +3,7 @@ name: PortierDigital-Windows
 
 services:
   db:
-    container_name: postgres-pd-sich
+    container_name: postgres-pd
     image: postgres:17-alpine3.21
     restart: always
     networks:
@@ -14,7 +14,7 @@ services:
       POSTGRES_PASSWORD: "password"
 
   app:
-    container_name: portier-digital-sich
+    container_name: portier-digital
     depends_on:
       - db
     image: portier-digital:latest
@@ -22,7 +22,7 @@ services:
     networks:
       - pd-net
     ports:
-      - "8080:8080"
+      - "8081:8080"
     volumes:
       - c:\\home\\slj\\web\\slj.demodev.cc\\public_html\\resources\\portier-digital:/usr/local/tomcat/webapps/resources
 

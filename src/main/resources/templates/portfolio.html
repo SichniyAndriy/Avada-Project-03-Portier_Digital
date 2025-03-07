@@ -21,7 +21,7 @@
           I love <span>what I do</span> and I make sure I do great.
         </div>
         <div class="work__experience">
-          <button class="my__work" type="button">View My Work</button>
+          <button class="my__work" type="button" onclick="location.href='#projects'">View My Work</button>
           <div class="work__experience--text">
             I am Portier, experienced Digital Product Designer based on Florida. I
             am here to help you build your amazing product.
@@ -29,7 +29,7 @@
         </div>
       </div>
     </section>
-    <section class="projects">
+    <section class="projects" id="projects">
       <div class="container" th:each="p : ${projects}">
         <div class="container__img position-relative">
           <img class="container__img--element"

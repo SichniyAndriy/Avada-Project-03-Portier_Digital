@@ -2,6 +2,7 @@ package s_lab.sichniy_andriy.portier_digital.controller.admin;
 
 
 import java.io.IOException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -14,11 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import s_lab.sichniy_andriy.portier_digital.ServiceUtils;
 import s_lab.sichniy_andriy.portier_digital.model.dto.ArticleDto;
+import s_lab.sichniy_andriy.portier_digital.model.dto.SubscriberDto;
 import s_lab.sichniy_andriy.portier_digital.service.BlogService;
-import s_lab.sichniy_andriy.portier_digital.service.ServiceUtils;
 
 
 @Controller
@@ -85,4 +88,11 @@ public class ArticlesController {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
+    @GetMapping("/emails")
+    @ResponseBody
+    public List<String> getEmails() {
+        return blogService.getAllSubscribers().stream()
+                .map(SubscriberDto::email)
+                .toList();
+    }
 }
