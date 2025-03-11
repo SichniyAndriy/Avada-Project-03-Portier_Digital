@@ -4,6 +4,8 @@ package s_lab.sichniy_andriy.portier_digital;
 import java.util.ArrayList;
 import java.util.List;
 import net.datafaker.Faker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -32,6 +34,7 @@ public class InitUtils implements CommandLineRunner {
     private final SubscribersRepository subscribersRepository;
 
     private final Faker faker;
+    private final Logger LOGGER = LoggerFactory.getLogger(InitUtils.class);
 
     public InitUtils(
             @Autowired ArticlesRepository articlesRepository,
@@ -48,17 +51,20 @@ public class InitUtils implements CommandLineRunner {
         this.projectRepository = projectRepository;
         this.skillsRepository = skillsRepository;
         this.subscribersRepository = subscribersRepository;
+        LOGGER.info("{} initialized", this.getClass().getName());
     }
 
 
     @Override
     public void run(String... args) {
+        LOGGER.info("{} started initialization fake data", this.getClass().getSimpleName());
         initArticles(faker.number().numberBetween(20, 30));
         initCompanies(faker.number().numberBetween(10, 15));
         initContacts();
         initProjects(faker.number().numberBetween(25, 35));
         initSkills(faker.number().numberBetween(8, 12));
         initSubscribers(faker.number().numberBetween(35, 50));
+        LOGGER.info("{} finished initialization fake data", this.getClass().getSimpleName());
     }
 
     private void initArticles(int n) {

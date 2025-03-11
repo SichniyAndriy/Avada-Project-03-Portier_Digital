@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+
+<configuration>
+
+    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%white([%thread]) %green(%date{dd.MM.yyyy hh:mm:ss}) %cyan([%5level]) - %magenta(%logger{40}) - %highlight(%msg);%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/usr/local/tomcat/webapps/resources/logs/portier-digital.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>portier-digital-%d{dd.MM.yyyy}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%thread] %d{hh:mm:ss} %5level - %logger{40} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="ConsoleAppender"/>
+        <appender-ref ref="FileAppender"/>
+    </root>
+    <logger level="DEBUG" name="ServiceLoggerAspect" additivity="false">
+        <appender-ref ref="ConsoleAppender"/>
+    </logger>
+
+</configuration>

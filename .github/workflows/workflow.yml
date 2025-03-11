@@ -42,7 +42,7 @@ jobs:
           distribution: 'oracle' # See 'Supported distributions' for available options
           java-version: '17'
           cache: 'maven'
-          cache-dependency-path: "pom.xml" # optional
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Maven builds
@@ -76,7 +76,7 @@ jobs:
           script: | 
             echo "I\'m working..."
             echo "Go to compose directory"
-            cd ~/web/slj.demodev.cc/public_html/compose
+            cd ~/web/slj.demodev.cc/public_html/sichniy-compose/portier-digital
             echo "Pull updated image from hub"
             docker compose pull
             echo "Recreate app containers"
