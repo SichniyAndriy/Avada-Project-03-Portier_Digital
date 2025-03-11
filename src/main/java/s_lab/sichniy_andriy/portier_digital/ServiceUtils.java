@@ -46,7 +46,7 @@ public class ServiceUtils {
 
         try(InputStream is = new ByteArrayInputStream(bytes)) {
             BufferedImage rgbImg = ImageIO.read(is);
-            writeNewImage(rgbImg, 844, 600,
+            writeNewImage(rgbImg, 350, 260,
                     dest.getAbsolutePath() + File.separator + file.getOriginalFilename(), ext);
         } catch (Exception e) {
             throw new RuntimeException(e);
