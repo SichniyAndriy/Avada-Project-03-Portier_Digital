@@ -9,6 +9,7 @@ src/main/resources/static/pages
 htmlReport
 *.bkp
 dockerfile/**
+compose
 
 ### STS ###
 .apt_generated
